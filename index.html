@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+
+  <body class="bg-[#141416]">
+    <div id="light-mode" class="hidden">
+      <nav class="px-[150px] py-[48px] flex items-center gap-[64px]">
+        <div class="flex items-center gap-[100px]">
+          <img src="/public/dark.svg" alt="" />
+          <ul class="flex items-center gap-[32px]">
+            <li class="text-gray-500"><a href="">Features</a></li>
+            <li class="text-gray-500"><a href="">Pricing</a></li>
+            <li class="text-gray-500"><a href="">Download</a></li>
+            <li
+              class="text-gray-500 flex items-center justify-center gap-[5px]"
+            >
+              <a href="">Class</a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center gap-[24px]">
+          <img src="/public/logos.svg" alt="" />
+          <button
+            class="border border-[#E6E8EC] pl-[16px] pr-[16px] pt-[12px] pb-[12px] rounded-[90px] text-[#23262F] font-bold"
+          >
+            Get free trial
+          </button>
+          <button
+            id="dark"
+            class="border border-[#E6E8EC] pl-[16px] pr-[16px] pt-[12px] pb-[12px] rounded-[90px] text-[#23262F] font-bold"
+          >
+            Dark Mode
+          </button>
+        </div>
+      </nav>
+      <footer class="px-[136px] py-[30px] mt-[136px]">
+        <div
+          class="w-[1525px] h-[2px] bg-[#E6E8EC] relative right-[140px] bottom-[30px]"
+        ></div>
+        <div class="flex items-start gap-[150px]">
+          <img src="/public/dark-logo.svg" alt="" />
+          <div class="flex flex-col gap-[10px]">
+            <p class="text-[#777E90]">Lifestyle</p>
+            <p class="text-[#777E90]">Pricing</p>
+            <p class="text-[#777E90]">Class</p>
+            <p class="text-[#777E90]">Features</p>
+            <p class="text-[#777E90]">Download</p>
+          </div>
+          <div
+            class="w-[2px] h-[250px] bg-[#E6E8EC] relative bottom-[30px]"
+          ></div>
+          <div>
+            <h1 class="font-bold text-[20px] mb-[20px]">contact</h1>
+            <p>43252 Borer Mountains</p>
+            <p>Zackerychester</p>
+            <p>Bahamas</p>
+            <p>732-528-4945</p>
+          </div>
+          <div
+            class="w-[2px] h-[250px] bg-[#E6E8EC] relative bottom-[30px]"
+          ></div>
+
+          <div>
+            <h1 class="font-bold text-[20px] mb-[20px]">newsletter</h1>
+            <p>
+              Subscribe our newsletter to get <br />
+              more free design course and <br />
+              resource.
+            </p>
+            <div
+              class="flex gap-[20px] border border-[#E6E8EC] rounded-[20px] p-[10px]"
+            >
+              <input type="email" placeholder="Enter your email" />
+              <img src="/public/email-strelka.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-[1525px] h-[2px] bg-[#E6E8EC] relative right-[140px] bottom-[30px]"
+        ></div>
+
+        <div class="flex gap-[850px] w-max">
+          <p>Copyright © 2021 UI8 LLC. All rights reserved</p>
+          <img src="/public/logos.svg" alt="" />
+        </div>
+      </footer>
+    </div>
+    <div id="dark-mode">
+      <nav class="px-[150px] py-[48px] flex items-center gap-[64px]">
+        <div class="flex items-center gap-[100px]">
+          <img src="/public/light-logo.svg" alt="" />
+          <ul class="flex items-center gap-[32px]">
+            <li class="text-gray-500"><a href="">Features</a></li>
+            <li class="text-gray-500"><a href="">Pricing</a></li>
+            <li class="text-gray-500"><a href="">Download</a></li>
+            <li
+              class="text-gray-500 flex items-center justify-center gap-[5px]"
+            >
+              <a href="">Class</a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center gap-[24px]">
+          <img src="/public/logos.svg" alt="" />
+          <button
+            class="border border-[#E6E8EC] pl-[16px] pr-[16px] pt-[12px] pb-[12px] rounded-[90px] text-white font-bold"
+          >
+            Get free trial
+          </button>
+          <button
+            id="light"
+            class="border border-[#E6E8EC] pl-[16px] pr-[16px] pt-[12px] pb-[12px] rounded-[90px] text-white font-bold"
+          >
+            Light Mode
+          </button>
+        </div>
+      </nav>
+      <footer class="px-[136px] py-[30px] mt-[136px] border-t border-gray-600">
+        <div class="flex items-start gap-[150px]">
+          <img src="/public/logo.svg" alt="" />
+          <div class="flex flex-col gap-[10px]">
+            <p class="text-[#777E90]">Lifestyle</p>
+            <p class="text-[#777E90]">Pricing</p>
+            <p class="text-[#777E90]">Class</p>
+            <p class="text-[#777E90]">Features</p>
+            <p class="text-[#777E90]">Download</p>
+          </div>
+          <div
+            class="w-[2px] h-[300px] bg-gray-700 relative bottom-[30px]"
+          ></div>
+          <div>
+            <h1 class="font-bold text-[20px] mb-[20px] text-white">contact</h1>
+            <p class="text-white">43252 Borer Mountains</p>
+            <p class="text-white">Zackerychester</p>
+            <p class="text-white">Bahamas</p>
+            <p class="text-white">732-528-4945</p>
+          </div>
+          <div
+            class="w-[2px] h-[300px] bg-gray-700 relative bottom-[30px]"
+          ></div>
+
+          <div>
+            <h1 class="font-bold text-[20px] mb-[20px] text-white">
+              newsletter
+            </h1>
+            <p class="text-white">
+              Subscribe our newsletter to get <br />
+              more free design course and <br />
+              resource.
+            </p>
+            <div
+              class="flex gap-[20px] border border-[#E6E8EC] rounded-[20px] p-[10px]"
+            >
+              <input type="email" placeholder="Enter your email" />
+              <img src="/public/email-strelka.svg" alt="" />
+            </div>
+          </div>
+        </div>
+          <div
+            class="w-[1538px] h-[1.5px] bg-gray-700 relative right-[140px] bottom-[30px]"
+          ></div>
+
+        <div class="flex gap-[850px] w-max">
+          <p class="text-white">
+            Copyright © 2021 UI8 LLC. All rights reserved
+          </p>
+          <img src="/public/logos.svg" alt="" />
+        </div>
+      </footer>
+    </div>
+  </body>
+  <script type="module" src="/src/main.ts"></script>
+</html>

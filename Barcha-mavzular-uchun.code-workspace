@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Barcha-mavzular-uchun",
+			"path": "."
+		},
+		{
+			"name": "public",
+			"path": "../../public"
+		}
+	],
+	"settings": {}
+}
