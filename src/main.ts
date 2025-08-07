@@ -1,21 +1,29 @@
-class Person {
-  constructor(
-    public name: string,
-    public job: string,
-    private cardPin: number
-  ) {}
 
-  getPin() {
-    return this.cardPin;
+interface StudentMethod {
+  run(): void;
+  jump(): void;
+}
+
+interface StudentFileds {
+  name: string;
+  age: number;
+  job: string;
+}
+
+interface Student extends StudentFileds, StudentMethod {}
+
+class Person implements Student {
+  constructor(public name: string, public age: number, public job: string) {}
+
+  run(): void {
+    console.log(`${this.name} is running...`);  
   }
-
-  setPin(pin: number) {
-    this.cardPin = pin;
+  jump(): void {
+    console.log(`${this.name} is jumping...`);  
   }
 }
 
-const person = new Person("Kent", "Developer", 1187);
+const person = new Person('Kent', 15, 'Developer');
 
-console.log(person.getPin());
-person.setPin(2245);
-console.log(person.getPin());
+person.run()
+person.jump()
