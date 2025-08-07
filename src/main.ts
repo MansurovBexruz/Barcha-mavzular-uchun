@@ -1,15 +1,21 @@
-const lightMode = document.querySelector("#light-mode") as HTMLDivElement;
-const darkMode = document.querySelector("#dark-mode") as HTMLDivElement;
-const darkBtn = document.querySelector("#dark") as HTMLButtonElement;
-const lightBtn = document.querySelector("#light") as HTMLButtonElement;
+class Person {
+  constructor(
+    public name: string,
+    public job: string,
+    private cardPin: number
+  ) {}
 
-darkBtn.addEventListener("click", () => {
-  document.body.style.backgroundColor = "#141416";
-  lightMode.style.display = "none";
-  darkMode.style.display = "block";
-});
-lightBtn.addEventListener("click", () => {
-  document.body.style.backgroundColor = "#fff";
-  darkMode.style.display = "none";
-  lightMode.style.display = "block";
-});
+  getPin() {
+    return this.cardPin;
+  }
+
+  setPin(pin: number) {
+    this.cardPin = pin;
+  }
+}
+
+const person = new Person("Kent", "Developer", 1187);
+
+console.log(person.getPin());
+person.setPin(2245);
+console.log(person.getPin());
