@@ -1,411 +1,290 @@
-Arslonbek Alimbaev , [8/5/2025 12:40 PM]
-## 🔹 1. CARD CLASS (Karta)
+Arslonbek Alimbaev , [8/7/2025 12:36 PM]
+Bu yerda sizga bank tizimidan biroz soddaroq, lekin yaxshi strukturali Online Do'kon Boshqaruv Tizimi loyihasini taklif qilaman:Bu loyiha sizning talablaringizga mos keladi:
+
+✅ Loyihaning afzalliklari:
+- 5 ta asosiy class (Product, Customer, Order, Shop, Payment)
+- Har bir classda 4+ field va 4+ method mavjud
+- Bank tizimidan ancha sodda, lekin o'qitish uchun yetarli
+- Real hayotga yaqin - online do'kon tizimi
+- Yaxshi strukturalashgan va tushunishga oson
+
+🎯 Nimani o'rgatadi:
+- OOP asoslari (Class, Object, Field, Method)
+- Enum va Interface ishlatish
+- Obyektlar o'rtasidagi bog'lanish
+- Business logic yozish
+- Validation va Error handling
+
+🔧 Qo'shimcha imkoniyatlar:
+- Kengaytirish oson (yangi kategoriya, to'lov usuli qo'shish)
+- Database bilan bog'lash mumkin
+- Web interface qo'shsa bo'ladi
+
+Sizga yana boshqa mavzu kerakmi yoki shu loyihani batafsil kodda ko'rsatishimni xohlaysizmi?
+
+
+# 🛒 ONLINE DO'KON BOSHQARUV TIZIMI
+
+---
+
+## 🔹 1. PRODUCT CLASS (Mahsulot)
 
 ### 🎯 Maqsadi:
-
-Card sinfi — bu bank kartasining raqamli modeli. Har bir karta mustaqil obyekt bo‘lib, unda karta raqami, balans, egasi, xavfsizlik ma’lumotlari kabi maydonlar bo‘ladi. Bundan tashqari, u orqali asosiy operatsiyalar — pul qo‘yish, yechish, PIN o‘zgartirish va tranzaksiya tarixini yuritish amalga oshiriladi.
+Product sinfi — bu do'kondagi har bir mahsulotning raqamli modeli. Har bir mahsulot noyob ID, nom, narx, miqdor va kategoriya ma'lumotlariga ega bo'ladi.
 
 ### 📌 Maydonlari (Fields):
-
-* number – 16 xonali noyob karta raqami.
-* expiryDate – amal qilish muddati, masalan "12/25".
-* holderName – karta egasining to‘liq ismi.
-* cvv – 3 xonali xavfsizlik kodi, faqat offline va online to‘lovlar uchun.
-* balance – joriy pul miqdori (so‘mda).
-* pin – 4 xonali maxfiy kod, karta autentifikatsiyasi uchun.
-* isActive – karta faolmi yoki bloklanganmi.
-* cardType – karta turi (VISA, MASTERCARD, HUMO, UZCARD).
-* dailyLimit – kunlik maksimal sarf limiti.
-* monthlySpent – hozirgi oyda qancha sarflangan.
-* transactionHistory – karta bo‘yicha barcha operatsiyalar ro‘yxati.
+- id – noyob mahsulot identifikatori
+- name – mahsulot nomi (masalan, "iPhone 15 Pro")
+- price – mahsulot narxi (so'mda)
+- stock – ombordagi mavjud miqdori
+- category – mahsulot kategoriyasi (ELECTRONICS, CLOTHING, BOOKS, va boshqalar)
 
 ### ⚙️ Metodlari (Methods):
-
-* deposit(amount) – kartaga pul qo‘shish.
-* withdraw(amount) – kartadan pul yechish.
-* changePin(newPin) – PIN kodni yangilash.
-* block() – kartani bloklash.
-* activate() – kartani faollashtirish.
-* canSpend(amount) – berilgan miqdorni sarflash mumkinligini tekshirish.
+- updatePrice(newPrice) – mahsulot narxini yangilash
+- addStock(quantity) – omborga mahsulot qo'shish
+- reduceStock(quantity) – ombordan mahsulot olib tashlash
+- isAvailable() – mahsulot mavjudligini tekshirish
 
 ---
 
-## 🔹 2. BANK CLASS (Bank)
+## 🔹 2. CUSTOMER CLASS (Mijoz)
 
 ### 🎯 Maqsadi:
+Customer sinfi — do'kon mijozlarini ifodalaydi. Har bir mijozning shaxsiy ma'lumotlari, buyurtmalar tarixi va bonus ballari saqlanadi.
 
-Bank sinfi — butun bankni ifodalaydi. U bir nechta kartalarni boshqaradi, ularning balansini nazorat qiladi, o‘ziga xos komissiyalarni qo‘llaydi va umumiy moliyaviy holatini yuritadi.
+### 📌 Maydonlari (Fields):
+- customerId – noyob mijoz identifikatori
+- fullName – mijozning to'liq ismi
+- email – elektron pochta manzili
+- phoneNumber – telefon raqami
+- bonusPoints – to'plangan bonus ballari
 
-### 📌 Maydonlari:
-
-* name – bank nomi.
-* bankCode – bank kodi (masalan, "HB001").
-* totalBalance – bankdagi barcha kartalar balansining yig‘indisi.
-* cards – shu bankka tegishli barcha kartalar ro‘yxati.
-* transactionFee – har bir tranzaksiya uchun komissiya (foiz ko‘rinishida, masalan 0.5%).
-
-### ⚙️ Metodlari:
-
-* addCard(card) – bankga yangi karta qo‘shish.
-* getCardByNumber(number) – karta raqami orqali karta topish.
-* transfer(fromCard, toCard, amount) – bank ichidagi kartalar o‘rtasida pul o‘tkazish.
-* calculateTotalBalance() – barcha kartalar balansini hisoblab chiqish.
+### ⚙️ Metodlari (Methods):
+- addBonusPoints(points) – bonus ball qo'shish
+- useBonusPoints(points) – bonus balldan foydalanish
+- updateContactInfo(email, phone) – aloqa ma'lumotlarini yangilash
+- getTotalOrders() – umumiy buyurtmalar sonini olish
 
 ---
 
-## 🔹 3. P2P CLASS (Peer-to-Peer tizim)
+## 🔹 3. ORDER CLASS (Buyurtma)
 
 ### 🎯 Maqsadi:
+Order sinfi — mijozlar tomonidan berilgan buyurtmalarni boshqaradi. Har bir buyurtmada mahsulotlar ro'yxati, umumiy narx va holat ma'lumotlari mavjud.
 
-P2P sinfi — bu turli banklar o‘rtasida to‘g‘ridan-to‘g‘ri pul o'tkazmalarini amalga oshiruvchi tizim. U orqali foydalanuvchi HamkorBank'dan AsakaBank'ga to‘lov qilishi mumkin.
+### 📌 Maydonlari (Fields):
+- orderId – noyob buyurtma identifikatori
+- customerId – buyurtma beruvchi mijoz ID
+- orderItems – buyurtmadagi mahsulotlar ro'yxati
+- totalAmount – umumiy to'lov miqdori
+- orderStatus – buyurtma holati (PENDING, PROCESSING, SHIPPED, DELIVERED)
 
-### 📌 Maydonlari:
-
-* supportedBanks – P2P tizimida ishlashga ruxsat berilgan banklar ro‘yxati.
-* transactionHistory – barcha P2P orqali amalga oshirilgan tranzaksiyalar.
-* dailyTransactionLimit – har bir foydalanuvchi uchun kunlik maksimal o'tkazma limiti.
-* serviceFee – P2P komissiyasi (masalan, 0.2%).
-
-### ⚙️ Metodlari:
-
-* registerBank(bank) – yangi bankni P2P tizimiga qo‘shish.
-* send(fromCard, toCard, amount) – har xil banklar o‘rtasida pul yuborish.
-* validateTransaction(fromCard, toCard, amount) – tranzaksiyani tekshirish.
-* calculateFee(amount) – xizmat uchun komissiyani hisoblash.
+### ⚙️ Metodlari (Methods):
+- addItem(product, quantity) – buyurtmaga mahsulot qo'shish
+- removeItem(productId) – buyurtmadan mahsulot olib tashlash
+- calculateTotal() – umumiy summani hisoblash
+- updateStatus(newStatus) – buyurtma holatini yangilash
 
 ---
 
-## 🔹 4. ENUM TURLAR
+## 🔹 4. SHOP CLASS (Do'kon)
 
-### 📘 CardType:
+### 🎯 Maqsadi:
+Shop sinfi — butun do'konni boshqaradi. U mahsulotlar katalogi, mijozlar bazasi va buyurtmalarni nazorat qiladi.
 
-Karta turini bildiradi:
+### 📌 Maydonlari (Fields):
+- shopName – do'kon nomi
+- products – barcha mahsulotlar ro'yxati
+- customers – ro'yxatdan o'tgan mijozlar
+- orders – barcha buyurtmalar tarixi
 
-* VISA
-* MASTERCARD
-* HUMO
-* UZCARD
-
-### 📘 TransactionType:
-
-Tranzaksiya turini bildiradi:
-
-* DEPOSIT – pul qo‘yish
-* WITHDRAWAL – pul yechish
-* TRANSFER – bank ichidagi o'tkazma
-* P2P – banklar o‘rtasidagi o'tkazma
-
-### 📘 TransactionStatus:
-
-Tranzaksiya holatini bildiradi:
-
-* PENDING – kutilmoqda
-* SUCCESS – muvaffaqiyatli
-* FAILED – muvaffaqiyatsiz
-* CANCELLED – bekor qilingan
+### ⚙️ Metodlari (Methods):
+- addProduct(product) – katalogga yangi mahsulot qo'shish
+- registerCustomer(customer) – yangi mijozni ro'yxatdan o'tkazish
+- processOrder(order) – buyurtmani qayta ishlash
+- searchProducts(keyword) – mahsulotlarni qidiruv bo'yicha topish
 
 ---
 
-## 🔹 5. INTERFACE LAR
+## 🔹 5. PAYMENT CLASS (To'lov)
 
-### 📘 Transaction:
+### 🎯 Maqsadi:
+Payment sinfi — buyurtmalar uchun to'lovlarni qayta ishlaydi. Turli to'lov usullari va tranzaksiya holatlarini boshqaradi.
 
-Har qanday tranzaksiyaning asosiy strukturasini ifodalaydi:
+Arslonbek Alimbaev , [8/7/2025 12:36 PM]
+### 📌 Maydonlari (Fields):
+- paymentId – noyob to'lov identifikatori
+- orderId – qaysi buyurtma uchun to'lov
+- paymentMethod – to'lov usuli (CARD, CASH, BANK_TRANSFER)
+- amount – to'lov miqdori
+- paymentStatus – to'lov holati (PENDING, COMPLETED, FAILED)
 
-* id
-* tur (TransactionType)
-* miqdor
-* sana
-* status
-* izoh (ixtiyoriy)
+### ⚙️ Metodlari (Methods):
+- processPayment() – to'lovni amalga oshirish
+- refundPayment() – to'lovni qaytarish
+- validatePayment() – to'lov ma'lumotlarini tekshirish
+- generateReceipt() – kvitansiya yaratish
 
-### 📘 P2PTransaction:
+---
 
-P2P tranzaksiyalarning kengaytirilgan ko‘rinishi:
+## 🔹 6. ENUM TURLAR
 
-* Asosiy transaction ma’lumotlari
-* Qo‘shimcha tarzda fromCardNumber, toCardNumber, fromBankCode, toBankCode mavjud
+### 📘 ProductCategory:
+Mahsulot kategoriyasini bildiradi:
+- ELECTRONICS – elektronika
+- CLOTHING – kiyim-kechak
+- BOOKS – kitoblar
+- FOOD – oziq-ovqat
+- HOME – uy-ro'zg'or buyumlari
+
+### 📘 OrderStatus:
+Buyurtma holatini bildiradi:
+- PENDING – kutilmoqda
+- PROCESSING – qayta ishlanmoqda
+- SHIPPED – yuborilgan
+- DELIVERED – yetkazilgan
+- CANCELLED – bekor qilingan
+
+### 📘 PaymentMethod:
+To'lov usulini bildiradi:
+- CARD – plastik karta
+- CASH – naqd pul
+- BANK_TRANSFER – bank o'tkazmasi
+- DIGITAL_WALLET – raqamli hamyon
+
+### 📘 PaymentStatus:
+To'lov holatini bildiradi:
+- PENDING – kutilmoqda
+- COMPLETED – yakunlangan
+- FAILED – muvaffaqiyatsiz
+- REFUNDED – qaytarilgan
+
+---
+
+## 🔹 7. INTERFACE LAR
+
+### 📘 OrderItem:
+Buyurtmadagi bitta mahsulot ma'lumoti:
+- productId – mahsulot ID
+- quantity – miqdor
+- unitPrice – birlik narxi
+- totalPrice – umumiy narx
+
+### 📘 SearchResult:
+Qidiruv natijalari:
+- products – topilgan mahsulotlar ro'yxati
+- totalCount – umumiy natijalar soni
+- searchTime – qidiruv vaqti
 
 ### 📘 ValidationResult:
-
-Har qanday tekshiruv natijasini bildiradi:
-
-* muvaffaqiyatli yoki yo‘q
-* xato xabari (agar mavjud bo‘lsa)
-
-### 📘 P2PTransactionResult:
-
-P2P orqali yuborilgan tranzaksiya natijasini bildiradi:
-
-Arslonbek Alimbaev , [8/5/2025 12:40 PM]
-* muvaffaqiyatli yoki yo‘q
-* tranzaksiya ID (agar muvaffaqiyatli bo‘lsa)
-* xatolik sababi (agar muvaffaqiyatsiz bo‘lsa)
+Tekshiruv natijasi:
+- isValid – to'g'ri yoki noto'g'ri
+- errorMessage – xato xabari (agar bo'lsa)
 
 ---
 
-## 🔗 6. OBYEKTLAR O‘RTASIDAGI ALOQA
+## 🔗 8. OBYEKTLAR O'RTASIDAGI ALOQA
 
-* Bank ↔ Card:
-  Har bir bankda ko‘plab kartalar bo‘ladi. Karta faqat bitta bankga tegishli bo‘ladi.
-
-* Bank ↔ P2P:
-  P2P bir nechta bankni qo‘llab-quvvatlaydi. Banklar bu tizim orqali o‘zaro aloqa qiladi.
-
-* Card ↔ P2P:
-  Turli banklardagi kartalar P2P orqali bir-biriga pul yubora oladi.
-
-Arslonbek Alimbaev , [8/5/2025 12:40 PM]
-
-
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------
-## 💳 CARD sinfidagi metodlar
+- Shop ↔ Product: Do'konda ko'plab mahsulotlar bo'ladi
+- Shop ↔ Customer: Do'konda ko'plab mijozlar ro'yxatdan o'tadi
+- Customer ↔ Order: Bir mijoz ko'plab buyurtma bera oladi
+- Order ↔ Product: Bir buyurtmada ko'plab mahsulot bo'lishi mumkin
+- Order ↔ Payment: Har bir buyurtma uchun to'lov amalga oshiriladi
 
 ---
 
-### 1. deposit(amount)
+## 💼 METODLARNING ISHLASH TARTIBI
 
-– Nima qiladi:
-Kartaga pul qo‘shadi va bu operatsiyani tranzaksiya tarixiga qo‘shadi.
+### 🛍️ PRODUCT metodlari:
 
-– Qachon ishlaydi:
+1. updatePrice(newPrice)
+- ✅ Ishlaydi: newPrice > 0
+- ❌ Ishlamaydi: newPrice <= 0
 
-* amount > 0
-* card.isActive == true
+2. addStock(quantity)
+- ✅ Ishlaydi: quantity > 0
+- ❌ Ishlamaydi: quantity <= 0
 
-– Qachon ishlamaydi:
+3. reduceStock(quantity)
+- ✅ Ishlaydi: quantity > 0 va stock >= quantity
+- ❌ Ishlamaydi: quantity > stock
 
-* Karta bloklangan (`isActive == false`)
-* Miqdor manfiy yoki nol (`amount <= 0`)
-
----
-
-### 2. withdraw(amount)
-
-– Nima qiladi:
-Kartadan pul yechadi, balansdan ayiradi va tranzaksiya qo‘shadi.
-
-– Qachon ishlaydi:
-
-* card.isActive == true
-* amount > 0
-* amount <= balance
-* amount <= dailyLimit
-* monthlySpent + amount <= monthlyLimit (agar mavjud bo‘lsa)
-
-– Qachon ishlamaydi:
-
-* Bloklangan karta
-* Yetarli balans yo‘q
-* Limitdan oshib ketgan
-* Miqdor manfiy yoki nol
+4. isAvailable()
+- ✅ Har doim ishlaydi: stock > 0 bo'lsa true, aks holda false
 
 ---
 
-### 3. changePin(newPin)
+### 👤 CUSTOMER metodlari:
 
-– Nima qiladi:
-Karta PIN kodini yangilaydi.
+1. addBonusPoints(points)
+- ✅ Ishlaydi: points > 0
+- ❌ Ishlamaydi: points <= 0
 
-– Qachon ishlaydi:
+2. useBonusPoints(points)
+- ✅ Ishlaydi: points > 0 va bonusPoints >= points
+- ❌ Ishlamaydi: points > bonusPoints
 
-* newPin to‘g‘ri formatda (`4 xonali raqam`)
+3. updateContactInfo(email, phone)
+- ✅ Ishlaydi: email va phone to'g'ri formatda
+- ❌ Ishlamaydi: noto'g'ri format
 
-– Qachon ishlamaydi:
-
-* newPin noto‘g‘ri formatda
-* Yangi PIN eski PIN bilan bir xil bo‘lsa (xohlasang bu shartni qo‘shsa bo‘ladi)
-
----
-
-### 4. block()
-
-– Nima qiladi:
-Kartani bloklaydi (`isActive = false`)
-
-– Qachon ishlaydi:
-
-* Har qanday holatda chaqirilsa ishlaydi
-
-– Qachon ishlamaydi:
-
-* Agar karta allaqachon bloklangan bo‘lsa, foydasiz bo‘ladi (lekin xato deb hisoblanmaydi)
+4. getTotalOrders()
+- ✅ Har doim ishlaydi: buyurtmalar sonini qaytaradi
 
 ---
 
-### 5. activate()
+### 📋 ORDER metodlari:
 
-– Nima qiladi:
-Bloklangan kartani yana faollashtiradi.
+1. addItem(product, quantity)
+- ✅ Ishlaydi: product mavjud va quantity <= product.stock
+- ❌ Ishlamaydi: mahsulot mavjud emas yoki stock yetmaydi
 
-– Qachon ishlaydi:
+2. removeItem(productId)
+- ✅ Ishlaydi: productId buyurtmada mavjud
+- ❌ Ishlamaydi: productId topilmaydi
 
-* isActive == false bo‘lsa
+3. calculateTotal()
+- ✅ Har doim ishlaydi: barcha itemlarning umumiy narxini hisoblaydi
 
-– Qachon ishlamaydi:
-
-* Agar karta allaqachon faol bo‘lsa
-
----
-
-### 6. canSpend(amount)
-
-– Nima qiladi:
-Berilgan miqdorni sarflash mumkinligini tekshiradi.
-
-– Qachon ishlaydi:
-
-* Faqat tekshiruv uchun, hech narsa o‘zgartirmaydi
-* Shunchaki true yoki false qaytaradi
-
-– Qachon ishlamaydi:
-
-* Bu metod xato chiqarmaydi, lekin false qaytishi mumkin:
-
-  * Agar balans yetmasa
-  * Agar limitdan oshsa
-  * Agar karta bloklangan bo‘lsa
-
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-## 🏦 BANK sinfidagi metodlar
+4. updateStatus(newStatus)
+- ✅ Ishlaydi: newStatus to'g'ri OrderStatus qiymatida
+- ❌ Ishlamaydi: noto'g'ri status
 
 ---
 
-### 1. addCard(card)
+### 🏪 SHOP metodlari:
 
-– Nima qiladi:
-Yangi kartani bank tizimiga qo‘shadi.
+1. addProduct(product)
+- ✅ Ishlaydi: product.id noyob
+- ❌ Ishlamaydi: product.id allaqachon mavjud
 
-– Qachon ishlaydi:
+2. registerCustomer(customer)
+- ✅ Ishlaydi: customer.email noyob
+- ❌ Ishlamaydi: email allaqachon ro'yxatdan o'tgan
 
-* Agar karta raqami noyob bo‘lsa (optional check)
-* Har qanday faol yoki nofaol karta
+3. processOrder(order)
+- ✅ Ishlaydi: order to'liq va barcha mahsulotlar mavjud
+- ❌ Ishlamaydi: mahsulotlar yetarli emas
 
-– Qachon ishlamaydi:
-
-* Agar karta tizimda allaqachon mavjud bo‘lsa (agar tekshiruv qilinayotgan bo‘lsa)
-
----
-
-### 2. getCardByNumber(number)
-
-– Nima qiladi:
-Berilgan raqam bo‘yicha kartani topadi.
-
-– Qachon ishlaydi:
-
-* Agar karta mavjud bo‘lsa
-
-– Qachon ishlamaydi:
-
-* Agar karta raqami bazada bo‘lmasa
+4. searchProducts(keyword)
+- ✅ Har doim ishlaydi: keyword bo'yicha qidiruv natijasini qaytaradi
 
 ---
 
-### 3. transfer(fromCard, toCard, amount)
+### 💳 PAYMENT metodlari:
 
-– Nima qiladi:
-Bir bankdagi ikkita karta o‘rtasida pul o‘tkazadi.
+Arslonbek Alimbaev , [8/7/2025 12:36 PM]
+1. processPayment()
+- ✅ Ishlaydi: to'lov ma'lumotlari to'g'ri va amount > 0
+- ❌ Ishlamaydi: noto'g'ri ma'lumotlar
 
-– Qachon ishlaydi:
+2. refundPayment()
+- ✅ Ishlaydi: paymentStatus == COMPLETED
+- ❌ Ishlamaydi: to'lov hali amalga oshirilmagan
 
-* Ikkala karta faol bo‘lsa
-* `fromCard`da yetarli balans bo‘lsa
-* Limitdan oshmagan bo‘lsa
-* amount > 0
+3. validatePayment()
+- ✅ Har doim ishlaydi: faqat tekshiradi
 
-– Qachon ishlamaydi:
-
-* Ikkaladan biri bloklangan bo‘lsa
-* fromCard.balance < amount
-* Limitdan oshsa
-
----
-
-### 4. calculateTotalBalance()
-
-– Nima qiladi:
-Barcha kartalarning balansini yig‘ib, totalBalance qiymatini yangilaydi.
-
-– Qachon ishlaydi:
-
-* Har doim ishlaydi, faqat hisob-kitob qiladi
-
-– Qachon ishlamaydi:
-
-* Xato chiqarmaydi, lekin kartalar bo‘sh bo‘lsa natija 0 bo‘ladi
-
----
-
-## 🔁 P2P sinfidagi metodlar
-
----
-
-### 1. registerBank(bank)
-
-– Nima qiladi:
-Yangi bankni P2P tizimiga qo‘shadi.
-
-– Qachon ishlaydi:
-
-* Agar bank tizimda mavjud bo‘lmasa
-
-– Qachon ishlamaydi:
-
-* Bank allaqachon qo‘shilgan bo‘lsa
-
----
-
-### 2. send(fromCard, toCard, amount)
-
-– Nima qiladi:
-Turli banklardagi kartalar o‘rtasida pul o‘tkazadi (P2P operatsiyasi).
-
-– Qachon ishlaydi:
-
-* Ikkala bank supportedBanks ichida bo‘lsa
-* Ikkala karta faol bo‘lsa
-* fromCard.balance >= amount
-* Limit va komissiya hisobga olingan bo‘lsa
-
-– Qachon ishlamaydi:
-
-* Banklardan biri qo‘llab-quvvatlanmasa
-* Limitdan oshsa
-* Balans yetarli bo‘lmasa
-* Kartalardan biri bloklangan bo‘lsa
-
----
-
-### 3. validateTransaction(fromCard, toCard, amount)
-
-– Nima qiladi:
-Tranzaksiya mumkinmi yoki yo‘qligini oldindan tekshiradi. Bu metod hech qanday operatsiya qilmaydi, faqat holatni aniqlaydi.
-
-– Qachon ishlaydi:
-
-* Har doim, faqat tekshiradi
-
-Arslonbek Alimbaev , [8/5/2025 12:40 PM]
-– Qachon ishlamaydi:
-
-* Natija false bo‘lishi mumkin yuqoridagi shartlar buzilganda
-
----
-
-### 4. calculateFee(amount)
-
-– Nima qiladi:
-Berilgan miqdor bo‘yicha P2P komissiyasini hisoblaydi.
-
-– Qachon ishlaydi:
-
-* Har doim ishlaydi
-
-– Qachon ishlamaydi:
-
-* Xato bermaydi, lekin noto‘g‘ri miqdor (masalan, manfiy son) kiritilsa, natija ham noto‘g‘ri bo‘lishi mumkin
+4. generateReceipt()
+- ✅ Ishlaydi: paymentStatus == COMPLETED
+- ❌ Ishlamaydi: to'lov yakunlanmagan
