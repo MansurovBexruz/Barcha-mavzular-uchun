@@ -76,6 +76,4 @@ class Card {
 
     console.log("Card is already active.");
   }
-
-  
 }

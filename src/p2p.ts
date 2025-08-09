@@ -27,6 +27,7 @@ class P2P {
     const to = this.supportedBanks.includes(toCard);
 
     if (from.balance <= amount) {
-        return `Xato: ${fromCard} kartasida yetarli mablag' yo'q.`;
+      return `Xato: ${fromCard} kartasida yetarli mablag' yo'q.`;
+    }
   }
 }
