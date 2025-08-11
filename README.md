@@ -1,290 +1,363 @@
-Arslonbek Alimbaev , [8/7/2025 12:36 PM]
-Bu yerda sizga bank tizimidan biroz soddaroq, lekin yaxshi strukturali Online Do'kon Boshqaruv Tizimi loyihasini taklif qilaman:Bu loyiha sizning talablaringizga mos keladi:
+Arslonbek Alimbaev , [8/9/2025 12:44 PM]
+## 1. Basic Greeter
 
-✅ Loyihaning afzalliklari:
-- 5 ta asosiy class (Product, Customer, Order, Shop, Payment)
-- Har bir classda 4+ field va 4+ method mavjud
-- Bank tizimidan ancha sodda, lekin o'qitish uchun yetarli
-- Real hayotga yaqin - online do'kon tizimi
-- Yaxshi strukturalashgan va tushunishga oson
+📝 Vazifa:
+makeGreeter(name) funksiyasi greet() funksiyasini qaytarsin. greet() chaqirilganda "Hello, <name>!" chiqarsin.
+💡 Maqsad: Closure orqali tashqi funksiyadagi name qiymatini ichki funksiyada ishlatish.
 
-🎯 Nimani o'rgatadi:
-- OOP asoslari (Class, Object, Field, Method)
-- Enum va Interface ishlatish
-- Obyektlar o'rtasidagi bog'lanish
-- Business logic yozish
-- Validation va Error handling
-
-🔧 Qo'shimcha imkoniyatlar:
-- Kengaytirish oson (yangi kategoriya, to'lov usuli qo'shish)
-- Database bilan bog'lash mumkin
-- Web interface qo'shsa bo'ladi
-
-Sizga yana boshqa mavzu kerakmi yoki shu loyihani batafsil kodda ko'rsatishimni xohlaysizmi?
+💡 Misol:
 
 
-# 🛒 ONLINE DO'KON BOSHQARUV TIZIMI
+const greeter = makeGreeter("Ali");
+greeter(); // "Hello, Ali!"
+
+
+🔍 Izoh: Closure — bu ichki funksiya tashqi scope’dagi o‘zgaruvchilarni eslab qolishi.
 
 ---
 
-## 🔹 1. PRODUCT CLASS (Mahsulot)
+## 2. Counter
 
-### 🎯 Maqsadi:
-Product sinfi — bu do'kondagi har bir mahsulotning raqamli modeli. Har bir mahsulot noyob ID, nom, narx, miqdor va kategoriya ma'lumotlariga ega bo'ladi.
+📝 Vazifa:
+createCounter() funksiyasi increment() va get() metodlari bo‘lgan obyekt qaytarsin.
+💡 Maqsad: Yashirin (`private`) hisobni closure orqali saqlash.
 
-### 📌 Maydonlari (Fields):
-- id – noyob mahsulot identifikatori
-- name – mahsulot nomi (masalan, "iPhone 15 Pro")
-- price – mahsulot narxi (so'mda)
-- stock – ombordagi mavjud miqdori
-- category – mahsulot kategoriyasi (ELECTRONICS, CLOTHING, BOOKS, va boshqalar)
+💡 Misol:
 
-### ⚙️ Metodlari (Methods):
-- updatePrice(newPrice) – mahsulot narxini yangilash
-- addStock(quantity) – omborga mahsulot qo'shish
-- reduceStock(quantity) – ombordan mahsulot olib tashlash
-- isAvailable() – mahsulot mavjudligini tekshirish
 
----
+const c = createCounter();
+c.increment();
+c.increment();
+c.get(); // 2
 
-## 🔹 2. CUSTOMER CLASS (Mijoz)
 
-### 🎯 Maqsadi:
-Customer sinfi — do'kon mijozlarini ifodalaydi. Har bir mijozning shaxsiy ma'lumotlari, buyurtmalar tarixi va bonus ballari saqlanadi.
-
-### 📌 Maydonlari (Fields):
-- customerId – noyob mijoz identifikatori
-- fullName – mijozning to'liq ismi
-- email – elektron pochta manzili
-- phoneNumber – telefon raqami
-- bonusPoints – to'plangan bonus ballari
-
-### ⚙️ Metodlari (Methods):
-- addBonusPoints(points) – bonus ball qo'shish
-- useBonusPoints(points) – bonus balldan foydalanish
-- updateContactInfo(email, phone) – aloqa ma'lumotlarini yangilash
-- getTotalOrders() – umumiy buyurtmalar sonini olish
+🔍 Izoh: Tashqi kod `count`ga to‘g‘ridan-to‘g‘ri kira olmaydi, faqat metodlar orqali o‘zgartiradi.
 
 ---
 
-## 🔹 3. ORDER CLASS (Buyurtma)
+## 3. Bank Account
 
-### 🎯 Maqsadi:
-Order sinfi — mijozlar tomonidan berilgan buyurtmalarni boshqaradi. Har bir buyurtmada mahsulotlar ro'yxati, umumiy narx va holat ma'lumotlari mavjud.
+📝 Vazifa:
+createBankAccount(initial) — balansni yashirin qilib, deposit(), withdraw(), va getBalance() metodlarini qaytarsin.
+💡 Maqsad: Private holatda ma’lumot saqlash va faqat maxsus funksiyalar orqali boshqarish.
 
-### 📌 Maydonlari (Fields):
-- orderId – noyob buyurtma identifikatori
-- customerId – buyurtma beruvchi mijoz ID
-- orderItems – buyurtmadagi mahsulotlar ro'yxati
-- totalAmount – umumiy to'lov miqdori
-- orderStatus – buyurtma holati (PENDING, PROCESSING, SHIPPED, DELIVERED)
+💡 Misol:
 
-### ⚙️ Metodlari (Methods):
-- addItem(product, quantity) – buyurtmaga mahsulot qo'shish
-- removeItem(productId) – buyurtmadan mahsulot olib tashlash
-- calculateTotal() – umumiy summani hisoblash
-- updateStatus(newStatus) – buyurtma holatini yangilash
 
----
+const acc = createBankAccount(100);
+acc.withdraw(50); // true
+acc.getBalance(); // 50
+acc.withdraw(100); // false
 
-## 🔹 4. SHOP CLASS (Do'kon)
 
-### 🎯 Maqsadi:
-Shop sinfi — butun do'konni boshqaradi. U mahsulotlar katalogi, mijozlar bazasi va buyurtmalarni nazorat qiladi.
-
-### 📌 Maydonlari (Fields):
-- shopName – do'kon nomi
-- products – barcha mahsulotlar ro'yxati
-- customers – ro'yxatdan o'tgan mijozlar
-- orders – barcha buyurtmalar tarixi
-
-### ⚙️ Metodlari (Methods):
-- addProduct(product) – katalogga yangi mahsulot qo'shish
-- registerCustomer(customer) – yangi mijozni ro'yxatdan o'tkazish
-- processOrder(order) – buyurtmani qayta ishlash
-- searchProducts(keyword) – mahsulotlarni qidiruv bo'yicha topish
+🔍 Izoh: Closure ma’lumotlar xavfsizligini ta’minlaydi.
 
 ---
 
-## 🔹 5. PAYMENT CLASS (To'lov)
+## 4. History Recorder
 
-### 🎯 Maqsadi:
-Payment sinfi — buyurtmalar uchun to'lovlarni qayta ishlaydi. Turli to'lov usullari va tranzaksiya holatlarini boshqaradi.
+📝 Vazifa:
+createHistory(n) — oxirgi n qiymatni saqlovchi funksiya bo‘lsin.
+💡 Maqsad: Closure orqali massivni tashqi koddan yashirish.
 
-Arslonbek Alimbaev , [8/7/2025 12:36 PM]
-### 📌 Maydonlari (Fields):
-- paymentId – noyob to'lov identifikatori
-- orderId – qaysi buyurtma uchun to'lov
-- paymentMethod – to'lov usuli (CARD, CASH, BANK_TRANSFER)
-- amount – to'lov miqdori
-- paymentStatus – to'lov holati (PENDING, COMPLETED, FAILED)
+💡 Misol:
 
-### ⚙️ Metodlari (Methods):
-- processPayment() – to'lovni amalga oshirish
-- refundPayment() – to'lovni qaytarish
-- validatePayment() – to'lov ma'lumotlarini tekshirish
-- generateReceipt() – kvitansiya yaratish
+
+const h = createHistory(3);
+h.push('a'); h.push('b'); h.push('c'); h.push('d');
+h.getHistory(); // ['b', 'c', 'd']
+
+
+🔍 Izoh: Massiv uzunligini doim nazorat qilish kerak (`shift` yoki slice bilan).
 
 ---
 
-## 🔹 6. ENUM TURLAR
+## 5. Power Function
 
-### 📘 ProductCategory:
-Mahsulot kategoriyasini bildiradi:
-- ELECTRONICS – elektronika
-- CLOTHING – kiyim-kechak
-- BOOKS – kitoblar
-- FOOD – oziq-ovqat
-- HOME – uy-ro'zg'or buyumlari
+📝 Vazifa:
+makePower(exponent) — berilgan daraja bo‘yicha funksiya yarating.
+💡 Maqsad: Closure ichida matematik parametr saqlash.
 
-### 📘 OrderStatus:
-Buyurtma holatini bildiradi:
-- PENDING – kutilmoqda
-- PROCESSING – qayta ishlanmoqda
-- SHIPPED – yuborilgan
-- DELIVERED – yetkazilgan
-- CANCELLED – bekor qilingan
+💡 Misol:
 
-### 📘 PaymentMethod:
-To'lov usulini bildiradi:
-- CARD – plastik karta
-- CASH – naqd pul
-- BANK_TRANSFER – bank o'tkazmasi
-- DIGITAL_WALLET – raqamli hamyon
 
-### 📘 PaymentStatus:
-To'lov holatini bildiradi:
-- PENDING – kutilmoqda
-- COMPLETED – yakunlangan
-- FAILED – muvaffaqiyatsiz
-- REFUNDED – qaytarilgan
+const square = makePower(2);
+square(5); // 25
+
+
+🔍 Izoh: Har bir qaytarilgan funksiya o‘z exponentini eslab qoladi.
 
 ---
 
-## 🔹 7. INTERFACE LAR
+## 6. Once Function
 
-### 📘 OrderItem:
-Buyurtmadagi bitta mahsulot ma'lumoti:
-- productId – mahsulot ID
-- quantity – miqdor
-- unitPrice – birlik narxi
-- totalPrice – umumiy narx
+📝 Vazifa:
+once(fn) — bir marta ishlaydigan funksiya. Keyingi chaqiriqlarda oldingi natijani qaytaradi.
+💡 Maqsad: Funksiya chaqiruvlarini cheklash.
 
-### 📘 SearchResult:
-Qidiruv natijalari:
-- products – topilgan mahsulotlar ro'yxati
-- totalCount – umumiy natijalar soni
-- searchTime – qidiruv vaqti
+💡 Misol:
 
-### 📘 ValidationResult:
-Tekshiruv natijasi:
-- isValid – to'g'ri yoki noto'g'ri
-- errorMessage – xato xabari (agar bo'lsa)
+
+let i = 0;
+const f = once(() => ++i);
+f(); // 1
+f(); // 1
+
+
+🔍 Izoh: called flag va result closure ichida saqlanadi.
 
 ---
 
-## 🔗 8. OBYEKTLAR O'RTASIDAGI ALOQA
+## 7. Memoization
 
-- Shop ↔ Product: Do'konda ko'plab mahsulotlar bo'ladi
-- Shop ↔ Customer: Do'konda ko'plab mijozlar ro'yxatdan o'tadi
-- Customer ↔ Order: Bir mijoz ko'plab buyurtma bera oladi
-- Order ↔ Product: Bir buyurtmada ko'plab mahsulot bo'lishi mumkin
-- Order ↔ Payment: Har bir buyurtma uchun to'lov amalga oshiriladi
+📝 Vazifa:
+memoize(fn) — hisob natijalarini cache qilish.
+💡 Maqsad: Bir xil argumentlar uchun hisobni qayta ishlamaslik.
 
----
+💡 Misol:
 
-## 💼 METODLARNING ISHLASH TARTIBI
 
-### 🛍️ PRODUCT metodlari:
+const slow = n => n * 2;
+const m = memoize(slow);
+m(2); // hisoblaydi
+m(2); // cache’dan oladi
 
-1. updatePrice(newPrice)
-- ✅ Ishlaydi: newPrice > 0
-- ❌ Ishlamaydi: newPrice <= 0
 
-2. addStock(quantity)
-- ✅ Ishlaydi: quantity > 0
-- ❌ Ishlamaydi: quantity <= 0
-
-3. reduceStock(quantity)
-- ✅ Ishlaydi: quantity > 0 va stock >= quantity
-- ❌ Ishlamaydi: quantity > stock
-
-4. isAvailable()
-- ✅ Har doim ishlaydi: stock > 0 bo'lsa true, aks holda false
+🔍 Izoh: Map yoki obyekt orqali cache saqlash mumkin.
 
 ---
 
-### 👤 CUSTOMER metodlari:
+## 8. Event Emitter
 
-1. addBonusPoints(points)
-- ✅ Ishlaydi: points > 0
-- ❌ Ishlamaydi: points <= 0
+📝 Vazifa:
+createEmitter() — hodisalarni ro‘yxatdan o‘tkazish, chaqirish va olib tashlash imkonini bersin.
+💡 Maqsad: Closure orqali event handlerlar ro‘yxatini yashirish.
 
-2. useBonusPoints(points)
-- ✅ Ishlaydi: points > 0 va bonusPoints >= points
-- ❌ Ishlamaydi: points > bonusPoints
+💡 Misol:
 
-3. updateContactInfo(email, phone)
-- ✅ Ishlaydi: email va phone to'g'ri formatda
-- ❌ Ishlamaydi: noto'g'ri format
 
-4. getTotalOrders()
-- ✅ Har doim ishlaydi: buyurtmalar sonini qaytaradi
+const e = createEmitter();
+const h = data => console.log(data);
+e.on('msg', h);
+e.emit('msg', 'hi'); // 'hi'
+e.off('msg', h);
+e.emit('msg', 'hi'); // hech narsa
 
----
 
-### 📋 ORDER metodlari:
-
-1. addItem(product, quantity)
-- ✅ Ishlaydi: product mavjud va quantity <= product.stock
-- ❌ Ishlamaydi: mahsulot mavjud emas yoki stock yetmaydi
-
-2. removeItem(productId)
-- ✅ Ishlaydi: productId buyurtmada mavjud
-- ❌ Ishlamaydi: productId topilmaydi
-
-3. calculateTotal()
-- ✅ Har doim ishlaydi: barcha itemlarning umumiy narxini hisoblaydi
-
-4. updateStatus(newStatus)
-- ✅ Ishlaydi: newStatus to'g'ri OrderStatus qiymatida
-- ❌ Ishlamaydi: noto'g'ri status
+🔍 Izoh: Har bir event uchun massivda handlerlar saqlanadi.
 
 ---
 
-### 🏪 SHOP metodlari:
+## 9. Loop Closure Gotcha
 
-1. addProduct(product)
-- ✅ Ishlaydi: product.id noyob
-- ❌ Ishlamaydi: product.id allaqachon mavjud
+📝 Vazifa:
+createTimers(n) — massiv qaytarsin, har funksiya o‘z indeksini chiqaradi. (`var` bilan ham ishlasin)
+💡 Maqsad: IIFE yordamida closure’da indeksni saqlash.
 
-2. registerCustomer(customer)
-- ✅ Ishlaydi: customer.email noyob
-- ❌ Ishlamaydi: email allaqachon ro'yxatdan o'tgan
+💡 Misol:
 
-3. processOrder(order)
-- ✅ Ishlaydi: order to'liq va barcha mahsulotlar mavjud
-- ❌ Ishlamaydi: mahsulotlar yetarli emas
 
-4. searchProducts(keyword)
-- ✅ Har doim ishlaydi: keyword bo'yicha qidiruv natijasini qaytaradi
+const fns = createTimers(5);
+fns[3](); // 3
+
+
+🔍 Izoh: let o‘rniga var ishlatsangiz, closure kerak bo‘ladi.
 
 ---
 
-### 💳 PAYMENT metodlari:
+## 10. Partial Application
 
-Arslonbek Alimbaev , [8/7/2025 12:36 PM]
-1. processPayment()
-- ✅ Ishlaydi: to'lov ma'lumotlari to'g'ri va amount > 0
-- ❌ Ishlamaydi: noto'g'ri ma'lumotlar
+📝 Vazifa:
+partial(fn, ...presetArgs) — oldindan berilgan argumentlar bilan yangi funksiya yaratish.
+💡 Maqsad: Parametrlarni closure orqali saqlash.
 
-2. refundPayment()
-- ✅ Ishlaydi: paymentStatus == COMPLETED
-- ❌ Ishlamaydi: to'lov hali amalga oshirilmagan
+💡 Misol:
 
-3. validatePayment()
-- ✅ Har doim ishlaydi: faqat tekshiradi
 
-4. generateReceipt()
-- ✅ Ishlaydi: paymentStatus == COMPLETED
-- ❌ Ishlamaydi: to'lov yakunlanmagan
+const add = (a,b,c) => a+b+c;
+const add5 = partial(add, 2, 3);
+add5(10); // 15
+
+
+🔍 Izoh: Rest/spread operator ishlatiladi.
+
+---
+
+## 11. Secure ID Generator
+
+📝 Vazifa:
+createIdGenerator(prefix) — har chaqirilganda noyob ID yaratish.
+💡 Maqsad: Har generatorning o‘z counteri bo‘lishi.
+
+💡 Misol:
+
+Arslonbek Alimbaev , [8/9/2025 12:44 PM]
+const gen = createIdGenerator('item');
+gen(); // 'item-1'
+gen(); // 'item-2'
+
+
+🔍 Izoh: Counter closure ichida saqlanadi.
+
+---
+
+## 12. Sandboxed Eval (Advanced)
+
+📝 Vazifa:
+createSandbox(allowed) — faqat ruxsat berilgan funksiyalarni ishlatadigan run(code) funksiyasi.
+💡 Maqsad: Global scope’dan ajratilgan muhit yaratish.
+
+💡 Misol:
+
+
+const sandbox = createSandbox({ print: console.log });
+sandbox.run("print('hello')");
+
+
+🔍 Izoh: Xavfsiz emas, faqat closure va Function ishlashini tushuntirish uchun.
+
+---
+
+## 13. Delayed Logger
+
+📝 Vazifa:
+createDelayedLogger(message, delay) — belgilangan vaqt o‘tgach xabar chiqaradi.
+💡 Maqsad: Closure ichida vaqt va xabarni saqlash.
+
+💡 Misol:
+
+
+const logLater = createDelayedLogger("Hello!", 2000);
+logLater();
+
+
+🔍 Izoh: setTimeout callback closure’dagi qiymatlarni eslab qoladi.
+
+---
+
+## 14. Multiplier Factory
+
+📝 Vazifa:
+makeMultiplier(multiplier) — ko‘paytiruvchi funksiya yaratadi.
+💡 Maqsad: Closure orqali matematik ko‘rsatkichni saqlash.
+
+💡 Misol:
+
+
+const triple = makeMultiplier(3);
+triple(5); // 15
+
+
+🔍 Izoh: Har funksiya o‘z multiplierini eslab qoladi.
+
+---
+
+## 15. Rate Limiter
+
+📝 Vazifa:
+limitCalls(fn, limit) — faqat limit marta ishlaydigan funksiya.
+💡 Maqsad: Closure orqali chaqiriqlar sonini hisoblash.
+
+💡 Misol:
+
+
+const limited = limitCalls(() => console.log('run'), 2);
+limited(); // 'run'
+limited(); // 'run'
+limited(); // undefined
+
+
+🔍 Izoh: count va limit closure’da saqlanadi.
+
+---
+
+## 16. Sequence Generator
+
+📝 Vazifa:
+createSequence(start, step) — har chaqirilganda navbatdagi qiymatni qaytaradi.
+💡 Maqsad: Closure orqali ketma-ketlik hosil qilish.
+
+💡 Misol:
+
+
+const seq = createSequence(0, 2);
+seq(); // 0
+seq(); // 2
+seq(); // 4
+
+
+🔍 Izoh: current qiymati closure ichida o‘zgaradi.
+
+---
+
+## 17. Toggle Function
+
+📝 Vazifa:
+createToggle(...values) — har chaqirilganda ro‘yxatdagi keyingi qiymatni qaytaradi.
+💡 Maqsad: Closure orqali indexni saqlash.
+
+💡 Misol:
+
+
+const toggle = createToggle('on', 'off');
+toggle(); // 'on'
+toggle(); // 'off'
+toggle(); // 'on'
+
+
+🔍 Izoh: Index har chaqiriqda oshadi va loop bo‘lib ketadi.
+
+---
+
+## 18. Logger with Count
+
+📝 Vazifa:
+createLogger() — xabar bilan birga nechanchi marta chaqirilganini ham chiqaradi.
+💡 Maqsad: Closure orqali chaqiriqlar sonini hisoblash.
+
+💡 Misol:
+
+
+const log = createLogger();
+log('Hello'); // "[1] Hello"
+log('World'); // "[2] World"
+
+
+🔍 Izoh: Har chaqiriqda count oshiriladi.
+
+---
+
+## 19. Password Checker
+
+📝 Vazifa:
+createPasswordChecker(password) — kiritilgan qiymat to‘g‘ri bo‘lsa true, bo‘lmasa false qaytaradi.
+💡 Maqsad: Private ma’lumotni closure’da saqlash.
+
+💡 Misol:
+
+
+const check = createPasswordChecker('secret');
+check('test');   // false
+check('secret'); // true
+
+
+🔍 Izoh: Tashqaridan parolni ko‘rish imkoni yo‘q.
+
+---
+
+## 20. Average Calculator
+
+📝 Vazifa:
+createAverageCalculator() — qiymatlar qo‘shilib boradi va o‘rtacha qiymat qaytaradi.
+💡 Maqsad: Closure orqali qiymatlar yig‘indisini va sonini saqlash.
+
+💡 Misol:
+
+
+const avg = createAverageCalculator();
+avg(10); // 10
+avg(20); // 15
+avg(30); // 20
+
+
+🔍 Izoh: Har chaqiriqda umumiy yig‘indi va son oshiriladi.

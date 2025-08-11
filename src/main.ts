@@ -1,19 +1,17 @@
-function createFunction(count: number) {
-  let fns = [];
+// ## 1. Basic Greeter
 
-  for (let i = 0; i <= count; i++) {
-    fns.push(function () {
-      return i + 1;
-    });
-  }
+// 📝 Vazifa:
+// makeGreeter(name) funksiyasi greet() funksiyasini qaytarsin. greet() chaqirilganda "Hello, <name>!" chiqarsin.
+// 💡 Maqsad: Closure orqali tashqi funksiyadagi name qiymatini ichki funksiyada ishlatish.
 
-  return fns;
-}
+// 💡 Misol:
 
-const fns = createFunction(5);
 
-console.log(fns[0]());
-console.log(fns[1]());
-console.log(fns[2]());
-console.log(fns[3]());
-console.log(fns[4 ]());
+// const greeter = makeGreeter("Ali");
+// greeter(); // "Hello, Ali!"
+
+
+// 🔍 Izoh: Closure — bu ichki funksiya tashqi scope’dagi o‘zgaruvchilarni eslab qolishi.
+
+// ---
+
