@@ -588,3 +588,25 @@
 // avg(30); // 20
 // avg(30); // 20
 // avg(30); // 20
+
+function createHistory(n: number) {
+  let str: string[] = [];
+  return {
+    push(letter: string) {
+      str.push(letter);
+      if (str.length > n) {
+        str.shift();
+      }
+    },
+    getHistory() {
+      return str;
+    },
+  };
+}
+
+const h = createHistory(2);
+h.push("a");
+h.push("b");
+h.push("c");
+h.push("d");
+console.log(h.getHistory()); // ['b', 'c', 'd']
