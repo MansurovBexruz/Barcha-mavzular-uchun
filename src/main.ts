@@ -235,7 +235,7 @@
 // // createTimers(n) — massiv qaytarsin, har funksiya o‘z indeksini chiqaradi. (`var` bilan ham ishlasin)
 // // 💡 Maqsad: IIFE yordamida closure’da indeksni saqlash.
 
-// // 💡 Misol:
+// // 💡 Misol:6
 
 // // const fns = createTimers(5);
 // // fns[3](); // 3
@@ -257,7 +257,7 @@
 // const fns = createTimers(5);
 // console.log(fns[3]());
 
-// //  ✅✅✅✅✅✅✅✅✅❌❌❌❌❌❌❌❌❌❌❌❌❌
+// //  ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
 // // ## 10. Partial Application
 
 // // 📝 Vazifa:
@@ -589,24 +589,13 @@
 // avg(30); // 20
 // avg(30); // 20
 
-function createHistory(n: number) {
-  let str: string[] = [];
-  return {
-    push(letter: string) {
-      str.push(letter);
-      if (str.length > n) {
-        str.shift();
-      }
-    },
-    getHistory() {
-      return str;
-    },
+console.log("======== CHALLENGE-10 ========");
+function partial(fn: (...args: number[]) => number, ...args: number[]) {
+  return function (...nums: number[]) {
+    return fn(...nums, ...args);
   };
 }
 
-const h = createHistory(2);
-h.push("a");
-h.push("b");
-h.push("c");
-h.push("d");
-console.log(h.getHistory()); // ['b', 'c', 'd']
+const add = (...args: number[]) => args.reduce((a, c) => a + c);
+const summa = partial(add, 1);
+console.log(summa(10, 15, )); // 15
