@@ -2,6 +2,7 @@ interface User {
   id: string;
   username: string;
 }
+
 interface Repository {
   id: string;
   name: string;
@@ -32,11 +33,12 @@ function getUsers() {
   });
 }
 
-function getRepositories() {
+function getRepositories(username: string) {
   return new Promise<Repository[]>((resolve) => {
-    console.log("Loading repostories...");
+    console.log(`Loading Repositories of ${username} ...`);
 
     setTimeout(() => {
+      // Backend was called (get repositories from database with username)
       const repositories: Repository[] = [
         { id: "repo-id-1", name: "pdp-10" },
         { id: "repo-id-2", name: "pdp-40" },
@@ -47,13 +49,15 @@ function getRepositories() {
   });
 }
 
-function getBranches() {
+function getBranches(repoId: string) {
   return new Promise<Branch[]>((resolve) => {
-    console.log("Loading branches...");
+    console.log(`Loading Branches of ${repoId} ...`);
+
     setTimeout(() => {
+      // Backend was called (get branches from database with repoId)
       const branches: Branch[] = [
-        { id: "branch-id-1", name: "pdp-10" },
-        { id: "branch-id-2", name: "pdp-40" },
+        { id: "branch-id-1", name: "main" },
+        { id: "branch-id-2", name: "dev" },
       ];
 
       resolve(branches);
@@ -61,13 +65,15 @@ function getBranches() {
   });
 }
 
-function getCommits() {
+function getCommits(branchId: string) {
   return new Promise<Commit[]>((resolve) => {
-    console.log("Loading commits...");
+    console.log(`Loading Commits of ${branchId} ...`);
+
     setTimeout(() => {
+      // Backend was called (get commits from database with branchId)
       const commits: Commit[] = [
-        { id: "commit-id-1", message: "pdp-10" },
-        { id: "commit-id-2", message: "pdp-40" },
+        { id: "commit-id-1", message: "Initial commit" },
+        { id: "commit-id-2", message: "Second commit" },
       ];
 
       resolve(commits);
@@ -75,15 +81,18 @@ function getCommits() {
   });
 }
 
-getUsers().then((users) => {
-  console.log("[USERS]", users);
-  getRepositories().then((repository) => {
-    console.log("[REPOSTORIES]", repository);
-    getBranches().then((branch) => {
-      console.log("[BRANCHES]", branch);
-      getCommits().then((commit) => {
-        console.log("[COMMITS]", commit);
-      });
-    });
-  });
-});
+const usersFn = await getUsers();
+
+console.log("USERS[]", usersFn);
+const user = usersFn[0];
+
+const repositoriesFn = await getRepositories(user.username);
+console.log("REPOSITORIES[]", repositoriesFn);
+const repository = repositoriesFn[0];
+
+const branchesFn = await getBranches(repository.id);
+console.log("BRANCHES[]", branchesFn);
+const branch = branchesFn[0];
+
+const commitsFn = await getCommits(branch.id);
+console.log("COMMITS[]", commitsFn);
