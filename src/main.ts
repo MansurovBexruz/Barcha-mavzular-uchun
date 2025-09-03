@@ -1,63 +1,89 @@
-/**
- * Vazifa bajarilgan linki:
- * https://excalidraw.com/
- */
-// =======================
-// VAZIFA 1: square + Promise + setTimeout
-// =======================
-function square(n: number) {
-  return n * n;
+interface User {
+  id: string;
+  username: string;
+}
+interface Repository {
+  id: string;
+  name: string;
 }
 
-function squareAndDouble(n: number) {
-  return square(n) * 2;
+interface Branch {
+  id: string;
+  name: string;
 }
 
-console.log("1:", squareAndDouble(2));
+interface Commit {
+  id: string;
+  message: string;
+}
 
-Promise.resolve().then(() => console.log("2:", squareAndDouble(3)));
+function getUsers() {
+  return new Promise<User[]>((resolve) => {
+    console.log("Loading users...");
 
-setTimeout(() => console.log("3:", squareAndDouble(4)), 0);
+    setTimeout(() => {
+      const users: User[] = [
+        { id: "user-id-1", username: "arslonbekXX" },
+        { id: "user-id-2", username: "john_doe" },
+      ];
 
-console.log("4:", squareAndDouble(5));
+      resolve(users);
+    }, 2000);
+  });
+}
 
-/*
-EXPECTED OUTPUT (Vazifa 1):
-1: 8
-4: 50
-2: 18
-3: 32
-*/
+function getRepositories() {
+  return new Promise<Repository[]>((resolve) => {
+    console.log("Loading repostories...");
 
-// // =======================
-// // VAZIFA 2: sync + Promise + setTimeout aralash
-// // =======================
-// function fetchData(id: number) {
-//   return `Data-${id}`;
-// }
+    setTimeout(() => {
+      const repositories: Repository[] = [
+        { id: "repo-id-1", name: "pdp-10" },
+        { id: "repo-id-2", name: "pdp-40" },
+      ];
 
-// function processData(id: number) {
-//   return `Processed(${fetchData(id)})`;
-// }
+      resolve(repositories);
+    }, 2000);
+  });
+}
 
-// console.log("A:", processData(1));
+function getBranches() {
+  return new Promise<Branch[]>((resolve) => {
+    console.log("Loading branches...");
+    setTimeout(() => {
+      const branches: Branch[] = [
+        { id: "branch-id-1", name: "pdp-10" },
+        { id: "branch-id-2", name: "pdp-40" },
+      ];
 
-// setTimeout(() => console.log("B:", processData(2)), 0);
+      resolve(branches);
+    }, 2000);
+  });
+}
 
-// Promise.resolve().then(() => console.log("C:", processData(3)));
+function getCommits() {
+  return new Promise<Commit[]>((resolve) => {
+    console.log("Loading commits...");
+    setTimeout(() => {
+      const commits: Commit[] = [
+        { id: "commit-id-1", message: "pdp-10" },
+        { id: "commit-id-2", message: "pdp-40" },
+      ];
 
-// console.log("D:", processData(4));
+      resolve(commits);
+    }, 2000);
+  });
+}
 
-// setTimeout(() => console.log("E:", processData(5)), 0);
-
-// Promise.resolve().then(() => console.log("F:", processData(6)));
-
-// /*
-// EXPECTED OUTPUT (Vazifa 2):
-// A: Processed(Data-1)
-// D: Processed(Data-4)
-// C: Processed(Data-3)
-// F: Processed(Data-6)
-// B: Processed(Data-2)
-// E: Processed(Data-5)
-// */
+getUsers().then((users) => {
+  console.log("[USERS]", users);
+  getRepositories().then((repository) => {
+    console.log("[REPOSTORIES]", repository);
+    getBranches().then((branch) => {
+      console.log("[BRANCHES]", branch);
+      getCommits().then((commit) => {
+        console.log("[COMMITS]", commit);
+      });
+    });
+  });
+});
