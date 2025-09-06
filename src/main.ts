@@ -19,13 +19,13 @@ interface Commit {
 }
 
 function getUsers() {
-  return new Promise<User[]>((resolve) => {
-    console.log("Loading users...");
+  console.log('Loading users...');
 
+  return new Promise<User[]>((resolve) => {
     setTimeout(() => {
       const users: User[] = [
-        { id: "user-id-1", username: "arslonbekXX" },
-        { id: "user-id-2", username: "john_doe" },
+        { id: "user-id-1", username: "user1" },
+        { id: "user-id-2", username: "user2" },
       ];
 
       resolve(users);
@@ -95,4 +95,4 @@ console.log("BRANCHES[]", branchesFn);
 const branch = branchesFn[0];
 
 const commitsFn = await getCommits(branch.id);
-console.log("COMMITS[]", commitsFn);
+console.log("Commits[]", commitsFn);
