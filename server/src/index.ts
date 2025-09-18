@@ -9,23 +9,23 @@ app.use(cors()); // CORS - Allow access any domain requesting to this server
 app.use(express.json()); // Parse JSON body
 
 app.post("/auth/register", (req, res) => {
-	const player: Player = {
-		id: faker.string.uuid(),
-		name: req.body.name,
-		email: req.body.email,
-		rank: 0,
-		password: req.body.password,
-	};
+  const player: Player = {
+    id: faker.string.uuid(),
+    name: req.body.name,
+    email: req.body.email,
+    rank: 0,
+    password: req.body.password,
+  };
 
-	players.push(player);
+  players.push(player);
 
-	res.send({ player });
+  res.send({ player });
 });
 
 app.post("/auth/login", (req, res) => {});
 
 app.get("/games/my/:playerId", (req, res) => {
-	console.log("playerId", req.params.playerId);
+  console.log("playerId", req.params.playerId);
 });
 app.post("/games", (req, res) => {});
 
