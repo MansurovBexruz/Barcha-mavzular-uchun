@@ -1,5 +1,5 @@
 {
-  "name": "pdp-21",
+  "name": "web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +10,10 @@
   },
   "devDependencies": {
     "typescript": "~5.8.3",
-    "vite": "^7.0.4"
+    "vite": "^7.1.2"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.11",
-    "tailwindcss": "^4.1.11"
+    "@tailwindcss/vite": "^4.1.13",
+    "tailwindcss": "^4.1.13"
   }
 }
