@@ -13,6 +13,7 @@ export interface Game {
 	board: Board;
 	winnerId: string | null;
 	nextPlayerId: string;
+	status: "completed" | "pending";
 }
 
 export type Cell = "X" | "O" | null;
