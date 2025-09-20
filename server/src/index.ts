@@ -4,18 +4,31 @@ import type { Game, Player } from "./types";
 import { faker } from "@faker-js/faker";
 import { players, games } from "./db";
 import { getRandomPlayerId } from "./utils";
+import { z } from "zod";
 
 const app = express();
 app.use(cors()); // CORS - Allow access any domain requesting to this server
 app.use(express.json()); // Parse JSON body
 
+const registerSchema = z.object({
+	name: z.string().min(4, "Name must be at least 4 characters"),
+	email: z.email().min(1, "Email is required field"),
+	password: z.string().min(4, "Password must be at least 4 characters"),
+});
+
 app.post("/auth/register", (req, res) => {
+	console.log("[IP][REGISTER] = ", req.ip);
+	const { error, data } = registerSchema.safeParse(req.body);
+	if (error) {
+		return res.status(400).send({ error: JSON.parse(error.message) });
+	}
+
 	const player: Player = {
 		id: faker.string.uuid(),
-		name: req.body.name,
-		email: req.body.email,
+		name: data.name,
+		email: data.email,
 		rank: 0,
-		password: req.body.password,
+		password: data.password,
 	};
 
 	players.push(player);
@@ -23,6 +36,7 @@ app.post("/auth/register", (req, res) => {
 	res.send({ player });
 });
 app.post("/auth/login", (req, res) => {
+	console.log("[IP][LOGIN] = ", req.ip);
 	const { email, password } = req.body;
 	const player = players.find((player) => player.email === email && player.password === password);
 	if (!player) return res.status(401).send({ error: "Invalid email or password" });
@@ -87,4 +101,3 @@ app.get("/players/:playerId", (req, res) => {
 
 const PORT = 4000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
-

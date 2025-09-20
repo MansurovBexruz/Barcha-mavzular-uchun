@@ -1,72 +1,61 @@
-import { sleep } from './utils';
+import type { User } from "./types";
+import { sleep } from "./utils";
+import { faker, tr } from "@faker-js/faker";
 
-const btnGetList = document.querySelector('.btn-get-list') as HTMLButtonElement;
-const btnGetSingle = document.querySelector('.btn-get-single') as HTMLButtonElement;
-const btnPostSingle = document.querySelector('.btn-post-single') as HTMLButtonElement;
-const btnPutSingle = document.querySelector('.btn-put-single') as HTMLButtonElement;
-const btnDeleteSingle = document.querySelector('.btn-delete-single') as HTMLButtonElement;
+const btnPostRegister = document.querySelector(
+  ".btn-post-register"
+) as HTMLButtonElement;
+const btnPostCreateGame = document.querySelector(
+  ".btn-post-create-game"
+) as HTMLButtonElement;
+const baseURL = "http://localhost:4000";
 
-const baseURL = 'http://localhost:4000';
-const todoId = 'e28f73a3-99d3-40a7-a034-2e2e432d5474';
-interface Todo {
-	id: string;
-	title: string;
-	completed: boolean;
-}
+let user: User | null = null;
+const handleRegister = async (e: MouseEvent) => {
+  const btn = e.target as HTMLButtonElement;
+  btn.innerHTML += "...";
+  const registerBody: Pick<User, "name" | "email" | "password"> = {
+    name: faker.person.firstName().toLowerCase(),
+    email: faker.internet.email().toLowerCase(),
+    password: faker.internet.password({ length: 4 }),
+  };
 
-// function http<T>(method: string, url: string, body?: any) {
-// 	return new Promise<T>((resolve) => {
-// 		const xhr = new XMLHttpRequest();
+  await sleep();
 
-// 		xhr.open(method, url);
-// 		xhr.setRequestHeader('Content-Type', 'application/json');
-// 		xhr.send(body ? JSON.stringify(body) : undefined);
-
-// 		xhr.onload = () => resolve(JSON.parse(xhr.responseText));
-// 	});
-// }
-async function http(method: string, url: string, body?: any) {
-	const response = await fetch(url, { method, body });
-	const data = await response.json();
-	return data;
-}
-
-btnGetList.onclick = async () => {
-	console.log('Getting list...');
-	await sleep(0.5);
-	const todos = await http('GET', `${baseURL}/todos`);
-	console.log('todos = ', todos);
-};
-btnGetSingle.onclick = async () => {
-	console.log('Getting single...');
-	await sleep(0.5);
-	const todo = await http('GET', `${baseURL}/todos/${todoId}`);
-	console.log('todo = ', todo);
-};
-btnPostSingle.onclick = async () => {
-	console.log('Posting single...');
-	await sleep(0.5);
-};
-btnPutSingle.onclick = async () => {
-	console.log('Putting single...');
-	await sleep(0.5);
-};
-btnDeleteSingle.onclick = async () => {
-	console.log('Deleting single...');
-	await sleep(0.5);
+  try {
+    const res = await fetch(`${baseURL}/auth/register`, {
+      method: "POST",
+      body: JSON.stringify(registerBody),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    user = data.player;
+  } catch (error) {
+  } finally {
+    btn.innerHTML = btn.innerHTML.replace("...", "");
+  }
 };
 
-const response = await fetch('http://localhost:4000/todos', { method: 'GET' });
-const todos: Todo[] = await response.json();
-console.log('todos = ', todos);
+const handleCreateGame = async (e: MouseEvent) => {
+  const btn = e.target as HTMLButtonElement;
+  btn.innerHTML += "...";
 
+  await sleep();
 
-/**
-	* Parking System
-	* -----
-	*
-	*
-	*
-	*
-	*
- */
+  if(!user) return alert("User not found")
+  try {
+    const res = await fetch(`${baseURL}/games`, {
+      method: "POST",
+      body: JSON.stringify({ userId: user?.id }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    btn.innerHTML = btn.innerHTML.replace("...", "");
+  }
+
+};
+
+btnPostRegister.addEventListener("click", handleRegister);
+btnPostCreateGame.addEventListener("click", handleCreateGame);
