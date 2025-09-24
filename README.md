@@ -1,20 +1,78 @@
-# ------ 18.09.25 ------ (102)
+# ---------- 21.09.25 ---------- (104)
 
-## Tic Tac Toe Game
+## Front-end roadmap 👍
 
-    ✅ Auth (register and login)
-    ✅ Games (get-my-games and create-game)
+    ✅ Javascript Roadmap
+    ✅ Front-end Roadmap
+    ✅ React Roadmap
 
-## JS Advanced
+## Semantic Version [10.15.1](Major.Minor.Patch) 👍
 
-    ✅ Expression vs Statement 👍
-    ✅ Object.create && Object.assign 👍
-    ✅ OOP with class 👍
-    ✅ Prototype && Prototype Chain 👍
-    ✅ Getters && Setters 👍
-    ✅ Functional Programming && Closure 👍
-    ✅ JS Modules 👍
-    ✅ NPM Package 👍
-    ✅ JS Execution && Event Loop - 1 lessons 👍
-    ✅ Callbacks && Promises && Async/Await - 2.5 lessons 👍
-    ✅ Backend && AJAX && Fetch - 1.5 lessons
+    ✅ Major
+    ✅ Minor
+    ✅ Patch
+
+## Library vs Framework 👍
+
+    ✅ Library 👍
+    ✅ Framework 👍
+
+## Explain React Folder Structure 👍
+
+    ✅ src
+    ✅ public
+    ✅ index.html
+    ✅ main.tsx
+    ✅ index.css
+    ✅ vite.config.ts
+    ✅ tsconfig.json
+    ✅ tsconfig.app.json
+    ✅ tsconfig.node.json
+    ✅ .gitignore
+    ✅ .eslintrc.js
+    ✅ .prettierrc
+
+## TSX vs TS files 👍
+
+## JSX
+
+         ✅ React.createElement
+         ✅ https://reactjs.org/docs/jsx-in-depth.html
+
+## JSX in depth
+
+         ✅ Self closing
+         ✅ Dot Notation for components
+         ✅ User-Defined Components Must Be Capitalized
+         ✅ Booleans, Null, and Undefined Are Ignored
+
+## Class Component
+
+         ✅ Children
+         ✅ Fragment
+         ✅ JS Expression
+
+## Using Bootstrap With React
+
+         ✅ install & using
+         ✅ create Counter component
+
+## Setting Attributes
+
+         ✅ using expression
+         ✅ using style object
+
+## Props
+
+         ✅ What is props
+         ✅ using props
+         ✅ example
+         ✅ practice - 118
+
+## JSX In Depth
+
+         ✅ Ignored values
+         ✅ Default true props
+         ✅ using String Literals
+
+## Deploy react app
