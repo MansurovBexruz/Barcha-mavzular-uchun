@@ -1,78 +1,56 @@
-# ---------- 21.09.25 ---------- (104)
+# ---------- 04.10.25 ---------- (107)
 
-## Front-end roadmap 👍
+## Generic Types 👍
 
-    ✅ Javascript Roadmap
-    ✅ Front-end Roadmap
-    ✅ React Roadmap
+    ✅ What is Generic Type 👍
+    ✅ Generic Type Example 👍
+    ✅ Generic Type Practice 👍
+    ✅ as const 👍
 
-## Semantic Version [10.15.1](Major.Minor.Patch) 👍
+## JSX 👍
 
-    ✅ Major
-    ✅ Minor
-    ✅ Patch
+    ✅ React.createElement 👍
+    ✅ https://reactjs.org/docs/jsx-in-depth.html 👍
 
-## Library vs Framework 👍
+## JSX in depth 👍
 
-    ✅ Library 👍
-    ✅ Framework 👍
+    ✅ Self closing 👍
+    ✅ Dot Notation for components 👍
+    ✅ User-Defined Components Must Be Capitalized 👍
+    ✅ Booleans, Null, and Undefined Are Ignored 👍
 
-## Explain React Folder Structure 👍
+## Naming Convention 👍
 
-    ✅ src
-    ✅ public
-    ✅ index.html
-    ✅ main.tsx
-    ✅ index.css
-    ✅ vite.config.ts
-    ✅ tsconfig.json
-    ✅ tsconfig.app.json
-    ✅ tsconfig.node.json
-    ✅ .gitignore
-    ✅ .eslintrc.js
-    ✅ .prettierrc
+    ✅ PascalCase for components 👍
+    ✅ camelCase for props or function names 👍
+    ✅ kebab-case for file and folder names 👍
+    ✅ snake_case for variables 👍
+    ✅ CONSTANT_CASE for constants or enums 👍
 
-## TSX vs TS files 👍
+## Class Component 👍
 
-## JSX
+    ✅ Children 👍
+    ✅ Fragment 👍
+    ✅ JS Expression 👍
 
-         ✅ React.createElement
-         ✅ https://reactjs.org/docs/jsx-in-depth.html
+## Using shadcn/ui With React
 
-## JSX in depth
+    ✅ install & using 👍
+    ✅ create Counter component 👍
+    ✅ create Popover component 👍
 
-         ✅ Self closing
-         ✅ Dot Notation for components
-         ✅ User-Defined Components Must Be Capitalized
-         ✅ Booleans, Null, and Undefined Are Ignored
+## Setting Attributes 👍
 
-## Class Component
-
-         ✅ Children
-         ✅ Fragment
-         ✅ JS Expression
-
-## Using Bootstrap With React
-
-         ✅ install & using
-         ✅ create Counter component
-
-## Setting Attributes
-
-         ✅ using expression
-         ✅ using style object
+    ✅ using expression 👍
+    ✅ using style object 👍
 
 ## Props
 
-         ✅ What is props
-         ✅ using props
-         ✅ example
-         ✅ practice - 118
-
-## JSX In Depth
-
-         ✅ Ignored values
-         ✅ Default true props
-         ✅ using String Literals
+    ✅ What is props
+    ✅ using props
+    ✅ example
+    ✅ practice - 118
 
 ## Deploy react app
+
+## React dev tools
