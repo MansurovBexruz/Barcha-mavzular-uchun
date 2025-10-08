@@ -1,20 +1,48 @@
 import { Component } from "react";
 import { Button } from "./components/ui/button";
 import { Badge } from "./components/ui/badge";
+import { count } from "console";
 
 interface CounterProps {
   children?: React.ReactNode;
+  initial: number;
 }
 
 export class Counter extends Component<CounterProps> {
+  state = {
+    count: 0
+  };
+
+  constructor(props: CounterProps) {
+    super(props);
+    this.state.count = props.initial;
+  }
+
+  increment = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  decrement = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
+
+  delete = () => {};
+
   render() {
+    const { count } = this.state;
+
     return (
       <div className="flex gap-2">
-        <Badge>{this.props.children === 0 ? "Zero" : this.props.children}</Badge>
-        <Button variant="outline" onClick={() => console.log("Decrement")}>
-          <span>Decrement</span>
+        <Badge variant={count ? "secondary" : "default"}>{count || "Zero"}</Badge>
+        <Button variant="destructive" onClick={this.delete}>
+          Delete
         </Button>
-        <Button variant="outline">Increment</Button>
+        <Button variant="outline" onClick={this.decrement} disabled={count === 0}>
+          Decrement
+        </Button>
+        <Button variant="outline" onClick={this.increment}>
+          Increment
+        </Button>
       </div>
     );
   }
