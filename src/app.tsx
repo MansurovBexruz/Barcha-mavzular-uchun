@@ -1,51 +1,96 @@
-import { StrictMode, useState, useEffect } from "react";
-import "./index.css";
-
-export function App() {
-  const [time, setTime] = useState(0.1 * 60);
-  const [isRunning, setIsRunning] = useState(false);
-
-  useEffect(() => {
-    if (!isRunning) return;
-    if (time <= 0) return;
-
-    const interval = setInterval(() => {
-      setTime(prev => prev - 1); 
-    }, 1000);
-
-    return () => clearInterval(interval); 
-  }, [isRunning, time]);
-
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-
-  const formatNumber = (num: number) => num.toString().padStart(2, "0");
-
-  return (
-    <body className="bg-[#BA4949]">
-      <div className="bg-[#FFFFFF1A] w-[550px] h-[350px] ml-[480px] mt-[250px] flex flex-col justify-center items-center gap-[15px] rounded-[10px]">
-        <div className="flex gap-[20px]">
-          <p className="px-[10px] rounded-[4px] text-[18px] font-mono font-medium text-white bg-[#0000001e] cursor-pointer hover:scale-110 transition-transform">
-            Pomodoro
-          </p>
-          <p className="px-[10px] rounded-[4px] text-[18px] font-mono font-medium text-white bg-[#0000001e] cursor-pointer hover:scale-110 transition-transform">
-            Short Break
-          </p>
-          <p className="px-[10px] rounded-[4px] text-[18px] font-mono font-medium text-white bg-[#0000001e] cursor-pointer hover:scale-110 transition-transform">
-            Long Break
-          </p>
-        </div>
-        <h1 className="text-[100px] text-white font-mono font-bold">
-          {" "}
-          {formatNumber(minutes)}:{formatNumber(seconds)}
-        </h1>
-        <button
-          onClick={() => setIsRunning(true)}
-          className="text-[20px] font-bold px-[40px] rounded-[5px] py-[10px] bg-white text-[#BA4949] active:relative top-[2px] cursor-pointer hover:scale-110 transition-transform"
-        >
-          START
-        </button>
-      </div>
-    </body>
-  );
+import React from "react";
+import { Button } from "./components/ui/button";
+import { Counter } from "./counter";
+interface AppState {
+  counters: Array<{ id: number; count: number; step: number }>;
 }
+
+class App extends React.Component<{}, AppState> {
+  state = {
+    counters: [
+      { id: 1, count: 0, step: 1 },
+      { id: 2, count: 0, step: 1 },
+      { id: 3, count: 0, step: 1 }
+    ]
+  };
+
+  reset = () => {
+    this.setState({
+      counters: [
+        { id: 1, count: 0, step: 1 },
+        { id: 2, count: 0, step: 1 },
+        { id: 3, count: 0, step: 1 }
+      ]
+    });
+  };
+
+  increment = (counterId: number) => {
+    const { counters } = this.state;
+    const idx = counters.findIndex(c => c.id === counterId);
+    if (idx === -1) return;
+
+    counters[idx].count += counters[idx].step;
+    this.setState({ counters });
+  };
+
+  decrement = (counterId: number) => {
+    const { counters } = this.state;
+    const idx = counters.findIndex(c => c.id === counterId);
+    if (idx === -1) return;
+
+    counters[idx].count -= counters[idx].step;
+    this.setState({ counters });
+  };
+  delete = (counterId: number) => {
+    const { counters } = this.state;
+    const idx = counters.findIndex(c => c.id === counterId);
+    if (idx === -1) return;
+
+    counters.splice(idx, 1);
+    this.setState({ counters });
+  };
+
+  changeStep = (counterId: number) => {
+    const { counters } = this.state;
+    const idx = counters.findIndex(c => c.id === counterId);
+    if (idx === -1) return;
+
+    counters[idx].step = Math.ceil(Math.random() * 20);
+    this.setState({ counters });
+  };
+
+  render() {
+    const { counters } = this.state;
+
+    return (
+      <div className="container mx-auto pt-4 px-4 flex flex-col gap-2">
+        <Button variant="blue" className="w-max " onClick={this.reset}>
+          Reset
+        </Button>
+        <Counter
+          step={counters[0].step}
+          count={counters[0].count}
+          increment={() => this.increment(counters[0].id)}
+          decrement={() => this.decrement(counters[0].id)}
+          changeStep={() => this.changeStep(counters[0].id)}
+        />
+        <Counter
+          step={counters[1].step}
+          count={counters[1].count}
+          increment={() => this.increment(counters[1].id)}
+          decrement={() => this.decrement(counters[1].id)}
+          changeStep={() => this.changeStep(counters[1].id)}
+        />
+        <Counter
+          step={counters[2].step}
+          count={counters[2].count}
+          increment={() => this.increment(counters[2].id)}
+          decrement={() => this.decrement(counters[2].id)}
+          changeStep={() => this.changeStep(counters[2].id)}
+        />
+      </div>
+    );
+  }
+}
+
+export default App;

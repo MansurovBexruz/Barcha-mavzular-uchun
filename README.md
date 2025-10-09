@@ -1,56 +1,34 @@
-# ---------- 04.10.25 ---------- (107)
+# ---------- 05.10.25 ---------- (108)
 
-## Generic Types 👍
+## Deploy react app 👍
 
-    ✅ What is Generic Type 👍
-    ✅ Generic Type Example 👍
-    ✅ Generic Type Practice 👍
-    ✅ as const 👍
+         ✅ netlify (manually 👍, github 👍)
+         ✅ vercel (github) 👍
 
-## JSX 👍
+## React dev tools 👍
 
-    ✅ React.createElement 👍
-    ✅ https://reactjs.org/docs/jsx-in-depth.html 👍
+         ✅ What is Dev Tool 👍
+         ✅ Components 👍
+         ✅ Profiler 👍
 
-## JSX in depth 👍
+## Rendering List
 
-    ✅ Self closing 👍
-    ✅ Dot Notation for components 👍
-    ✅ User-Defined Components Must Be Capitalized 👍
-    ✅ Booleans, Null, and Undefined Are Ignored 👍
+         ✅ Todo List
+         ✅ Key props
+         ✅ Rerendering
 
-## Naming Convention 👍
+## Handling Events
 
-    ✅ PascalCase for components 👍
-    ✅ camelCase for props or function names 👍
-    ✅ kebab-case for file and folder names 👍
-    ✅ snake_case for variables 👍
-    ✅ CONSTANT_CASE for constants or enums 👍
+         ✅ Using simple event handler
+         ✅ Binding Event handlers
+         ✅ bind with constructor
+         ✅ bind with arrow function
+         ✅ bind render method
+         ✅ Passing event arguments
 
-## Class Component 👍
+## Snippets
 
-    ✅ Children 👍
-    ✅ Fragment 👍
-    ✅ JS Expression 👍
+         ✅ what is Snippet
+         ✅ Custom snippets for react app
 
-## Using shadcn/ui With React
-
-    ✅ install & using 👍
-    ✅ create Counter component 👍
-    ✅ create Popover component 👍
-
-## Setting Attributes 👍
-
-    ✅ using expression 👍
-    ✅ using style object 👍
-
-## Props
-
-    ✅ What is props
-    ✅ using props
-    ✅ example
-    ✅ practice - 118
-
-## Deploy react app
-
-## React dev tools
+https://medium.com/@ralph1786/intro-to-react-component-lifecycle-ac52bf6340c
