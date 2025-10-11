@@ -3,12 +3,13 @@ import { createRoot } from "react-dom/client";
 import App from "./app";
 import "./index.css";
 import React from "react";
+import { Counter } from "./counter";
 
-const root = createRoot(document.getElementById("root")!);
+const rootElement = document.getElementById("app")!;
+
+const root = createRoot(rootElement);
 root.render(
   <StrictMode>
     <App />
   </StrictMode>
 );
-
-console.log(React.createElement("h1", {}, "Hello World"));
