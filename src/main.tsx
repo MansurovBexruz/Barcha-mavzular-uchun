@@ -3,11 +3,8 @@ import { createRoot } from "react-dom/client";
 import App from "./app";
 import "./index.css";
 import React from "react";
-import { Counter } from "./counter";
 
-const rootElement = document.getElementById("app")!;
-
-const root = createRoot(rootElement);
+const root = createRoot(document.getElementById("root")!);
 root.render(
   <StrictMode>
     <App />

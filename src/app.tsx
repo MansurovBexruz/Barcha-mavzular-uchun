@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "./components/ui/button";
 import { Counter } from "./counter";
+import { Navbar, Button } from "./components";
+
 interface AppState {
   counters: Array<{ id: number; count: number; step: number }>;
 }
@@ -14,7 +15,7 @@ class App extends React.Component<{}, AppState> {
     ]
   };
 
-  reset = () => {
+  handleClick = () => {
     this.setState({
       counters: [
         { id: 1, count: 0, step: 1 },
@@ -24,7 +25,7 @@ class App extends React.Component<{}, AppState> {
     });
   };
 
-  increment = (counterId: number) => {
+  handleIncrement = (counterId: number) => {
     const { counters } = this.state;
     const idx = counters.findIndex(c => c.id === counterId);
     if (idx === -1) return;
@@ -33,7 +34,7 @@ class App extends React.Component<{}, AppState> {
     this.setState({ counters });
   };
 
-  decrement = (counterId: number) => {
+  handleDecrement = (counterId: number) => {
     const { counters } = this.state;
     const idx = counters.findIndex(c => c.id === counterId);
     if (idx === -1) return;
@@ -41,7 +42,8 @@ class App extends React.Component<{}, AppState> {
     counters[idx].count -= counters[idx].step;
     this.setState({ counters });
   };
-  delete = (counterId: number) => {
+
+  handleDelete = (counterId: number) => {
     const { counters } = this.state;
     const idx = counters.findIndex(c => c.id === counterId);
     if (idx === -1) return;
@@ -50,7 +52,7 @@ class App extends React.Component<{}, AppState> {
     this.setState({ counters });
   };
 
-  changeStep = (counterId: number) => {
+  handleChangeStep = (counterId: number) => {
     const { counters } = this.state;
     const idx = counters.findIndex(c => c.id === counterId);
     if (idx === -1) return;
@@ -59,36 +61,35 @@ class App extends React.Component<{}, AppState> {
     this.setState({ counters });
   };
 
+  handleAddCounter() {
+    const { counters } = this.state;
+    counters.push({ id: Math.random(), count: 0, step: 1 });
+    this.setState({ counters });
+  }
+
   render() {
     const { counters } = this.state;
-
+    const countOfBiggerThanZero = counters.filter(c => c.count > 0).length;
     return (
-      <div className="container mx-auto pt-4 px-4 flex flex-col gap-2">
-        <Button variant="blue" className="w-max " onClick={this.reset}>
-          Reset
-        </Button>
-        <Counter
-          step={counters[0].step}
-          count={counters[0].count}
-          increment={() => this.increment(counters[0].id)}
-          decrement={() => this.decrement(counters[0].id)}
-          changeStep={() => this.changeStep(counters[0].id)}
-        />
-        <Counter
-          step={counters[1].step}
-          count={counters[1].count}
-          increment={() => this.increment(counters[1].id)}
-          decrement={() => this.decrement(counters[1].id)}
-          changeStep={() => this.changeStep(counters[1].id)}
-        />
-        <Counter
-          step={counters[2].step}
-          count={counters[2].count}
-          increment={() => this.increment(counters[2].id)}
-          decrement={() => this.decrement(counters[2].id)}
-          changeStep={() => this.changeStep(counters[2].id)}
-        />
-      </div>
+      <>
+        <Navbar count={countOfBiggerThanZero} onAddCounter={this.handleAddCounter} />
+        <div className="container mx-auto pt-4 px-4 flex flex-col gap-2">
+          <Button variant="blue" className="w-max " onClick={this.handleClick}>
+            Reset
+          </Button>
+          {counters.map(counter => (
+            <Counter
+              key={counter.id}
+              step={counter.step}
+              count={counter.count}
+              onIncrement={() => this.handleIncrement(counter.id)}
+              onDecrement={() => this.handleDecrement(counter.id)}
+              onDelete={() => this.handleDelete(counter.id)}
+              onChangeStep={() => this.handleChangeStep(counter.id)}
+            />
+          ))}
+        </div>
+      </>
     );
   }
 }

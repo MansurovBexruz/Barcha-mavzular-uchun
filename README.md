@@ -1,26 +1,29 @@
-# ---------- 05.10.25 ---------- (108)
+# ---------- 09.10.25 ---------- (109)
 
-## Deploy react app 👍
+## Stateless Functional Component 👍
 
-         ✅ netlify (manually 👍, github 👍)
-         ✅ vercel (github) 👍
+## Components folder structures 👍
 
-## React dev tools 👍
+         ✅ How to use index files 👍
+         ✅ Always use index.ts export for all components 👍
+         ✅ Always use kebab-case for all file names 👍
 
-         ✅ What is Dev Tool 👍
-         ✅ Components 👍
-         ✅ Profiler 👍
+## Rendering List 👍
 
-## Rendering List
+         ✅ Counter List 👍
+         ✅ Key props 👍
+         ✅ Rerendering  👍
 
-         ✅ Todo List
-         ✅ Key props
-         ✅ Rerendering
+## Rerendering 👍
 
-## Handling Events
+         ✅ Creating (create new virtual DOM) 👍
+         ✅ Diffing (compare new virtual DOM with old virtual DOM) 👍
+         ✅ Committing (update the real DOM) 👍
 
-         ✅ Using simple event handler
-         ✅ Binding Event handlers
+## Handling Events 👍
+
+         ✅ Using simple event handler 👍
+         ✅ Binding Event handlers 👍
          ✅ bind with constructor
          ✅ bind with arrow function
          ✅ bind render method
