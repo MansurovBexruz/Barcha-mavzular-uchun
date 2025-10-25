@@ -15,6 +15,7 @@
 		"typescript": "^5"
 	},
 	"dependencies": {
-		"concurrently": "^9.2.1"
+		"concurrently": "^9.2.1",
+		"movies-app": "."
 	}
 }

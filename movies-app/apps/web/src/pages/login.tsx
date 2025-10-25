@@ -15,7 +15,6 @@ export class Login extends Component<{}, LoginState> {
     errors: {},
     values: { email: "", password: "" }
   };
-
   handleErrorOfField = (field: keyof Values) => {
     const value = this.state.values[field];
     const errors: Errors = { ...this.state.errors }; // { email: "email is required field" }
