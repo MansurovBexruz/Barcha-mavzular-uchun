@@ -1,0 +1,162 @@
+import type { User } from "./types";
+import { faker } from "@faker-js/faker";
+
+export const users: User[] = [
+	{
+		id: 325,
+		name: "Dr. Gordon Schuster",
+		username: "Kelvin.Conroy35",
+		email: "Antonette.King87@yahoo.com",
+		address: {
+			street: "Third Avenue",
+			suite: "311",
+			city: "Fort Erikcester",
+			zipcode: "66531",
+		},
+		phone: "(879) 696-7467",
+		website: "https://buzzing-edge.net/",
+	},
+	{
+		id: 463,
+		name: "Roberta Kuphal",
+		username: "Raphaelle.Herzog43",
+		email: "Emilio86@gmail.com",
+		address: {
+			street: "Pleasant Street",
+			suite: "87056",
+			city: "Feestberg",
+			zipcode: "83010-6162",
+		},
+		phone: "596-681-2648",
+		website: "https://deficient-granny.info",
+	},
+	{
+		id: 624,
+		name: "Mr. Brandon Rodriguez DDS",
+		username: "Deshaun.Dicki-Cormier",
+		email: "Sabryna35@gmail.com",
+		address: {
+			street: "Kaylin Run",
+			suite: "155",
+			city: "Plano",
+			zipcode: "55548",
+		},
+		phone: "611-515-3865 x969",
+		website: "https://bleak-kettledrum.org",
+	},
+	{
+		id: 323,
+		name: "Darin Harber",
+		username: "Orlando_Nitzsche",
+		email: "Kathleen12@gmail.com",
+		address: {
+			street: "W 9th Street",
+			suite: "777",
+			city: "Alessandraboro",
+			zipcode: "37077",
+		},
+		phone: "1-546-794-3752 x5815",
+		website: "https://hefty-marten.net",
+	},
+	{
+		id: 359,
+		name: "Alberto Borer",
+		username: "Kieran_Kohler",
+		email: "Stanton55@yahoo.com",
+		address: {
+			street: "London Road",
+			suite: "17439",
+			city: "Port Roslyn",
+			zipcode: "04535-6082",
+		},
+		phone: "812-208-6808 x84774",
+		website: "https://excited-nightlife.biz",
+	},
+	{
+		id: 824,
+		name: "Sara Rath",
+		username: "Wilfredo14",
+		email: "Werner.Runolfsson86@hotmail.com",
+		address: {
+			street: "Gibson Mill",
+			suite: "5665",
+			city: "East Erickaboro",
+			zipcode: "07725-4263",
+		},
+		phone: "1-393-561-4900 x21803",
+		website: "https://kooky-squid.org/",
+	},
+	{
+		id: 375,
+		name: "Ms. Gail Hermiston",
+		username: "Matilda.Rempel",
+		email: "Johan31@yahoo.com",
+		address: {
+			street: "Kuhic Knolls",
+			suite: "15197",
+			city: "Howellview",
+			zipcode: "28069",
+		},
+		phone: "718.456.1432 x939",
+		website: "https://those-sauerkraut.net/",
+	},
+	{
+		id: 851,
+		name: "Robert Ryan",
+		username: "Thaddeus.Rice98",
+		email: "Estrella.Reilly8@yahoo.com",
+		address: {
+			street: "Ondricka Spring",
+			suite: "361",
+			city: "West Alene",
+			zipcode: "21173",
+		},
+		phone: "1-478-848-6847 x042",
+		website: "https://anguished-shoulder.net/",
+	},
+	{
+		id: 43,
+		name: "Theodore Cassin",
+		username: "Domenick_Tromp34",
+		email: "Javier.Gerlach65@gmail.com",
+		address: {
+			street: "Kunde Corners",
+			suite: "63274",
+			city: "Frisco",
+			zipcode: "24087",
+		},
+		phone: "(383) 455-9438 x28632",
+		website: "https://puzzled-fedora.org/",
+	},
+	{
+		id: 794,
+		name: "Laverne Hammes",
+		username: "Ray.Marquardt",
+		email: "Nelson_Vandervort@hotmail.com",
+		address: {
+			street: "Aufderhar Islands",
+			suite: "81759",
+			city: "Wilmington",
+			zipcode: "65817",
+		},
+		phone: "656-745-4221 x16807",
+		website: "https://untimely-partridge.net",
+	},
+];
+
+export function generateUsers(length = 1) {
+	return Array.from({ length }, () => ({
+		id: faker.number.int({ min: 1, max: 1000 }),
+		name: faker.person.fullName(),
+		username: faker.internet.username(),
+		email: faker.internet.email(),
+		address: {
+			street: faker.location.street(),
+			suite: faker.location.buildingNumber(),
+			city: faker.location.city(),
+			zipcode: faker.location.zipCode(),
+		},
+		phone: faker.phone.number(),
+		website: faker.internet.url(),
+	}));
+}

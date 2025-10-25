@@ -9,9 +9,18 @@ interface CounterProps {
   onIncrement: () => void;
 }
 export class Counter extends Component<CounterProps> {
-  componentDidUpdate(): void {
-    console.log("Counter ComponentDidUpdate");
+  intervalId: NodeJS.Timeout | undefined;
+  componentDidMount() {
+    this.intervalId = setInterval(() => {
+      console.log("Interval");
+      this.props.onIncrement();
+    }, 1000);
   }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.intervalId);
+  }
+
   render() {
     console.log("Counter Render");
     const { count, onDelete, onDecrement, onIncrement } = this.props;

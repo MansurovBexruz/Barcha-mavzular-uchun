@@ -8,9 +8,9 @@ interface AppState {
 export class App extends Component<{}, AppState> {
   state = {
     counters: [
-      { id: 1, count: 0, step: 1 },
-      { id: 2, count: 0, step: 1 },
-      { id: 3, count: 0, step: 1 }
+      { id: 1, count: 0 }
+      // { id: 2, count: 0 },
+      // { id: 3, count: 0 }
     ]
   };
 
@@ -19,7 +19,7 @@ export class App extends Component<{}, AppState> {
     const idx = counters.findIndex(c => c.id === counterId);
     if (idx === -1) return;
 
-    counters[idx].count += counters[idx].step;
+    counters[idx].count++;
     this.setState({ counters });
   };
 
@@ -28,7 +28,7 @@ export class App extends Component<{}, AppState> {
     const idx = counters.findIndex(c => c.id === counterId);
     if (idx === -1) return;
 
-    counters[idx].count -= counters[idx].step;
+    counters[idx].count--;
     this.setState({ counters });
   };
 
