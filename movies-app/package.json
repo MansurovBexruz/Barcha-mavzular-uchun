@@ -1,0 +1,21 @@
+{
+	"name": "movies-app",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev:web": "cd apps/web && bun run dev",
+		"dev:backend": "cd apps/backend && bun run dev",
+		"dev": "concurrently \"bun run dev:web\" \"bun run dev:backend\""
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"concurrently": "^9.2.1",
+		"movies-app": "."
+	}
+}
